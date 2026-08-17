@@ -8,7 +8,6 @@
 <meta name="theme-color" content="#0d0c0b">
 <link rel="apple-touch-icon" href="icon.svg">
 <link rel="icon" type="image/svg+xml" href="icon.svg">
-
 <meta name="description" content="Fitness & love messages. Discipline built the same room as devotion. New merch drop out now.">
 <meta property="og:title" content="Solid22 — Discipline. Devotion.">
 <meta property="og:description" content="Fitness & love messages. Merch is out now — for the ones who feel deeply and still show up.">
@@ -36,7 +35,7 @@
     --mauve: #c9a397;
     --gold: #a68a5b;
     --line: #35302c;
-  }
+}
   *{box-sizing:border-box; margin:0; padding:0;}
   html{scroll-behavior:smooth;}
   body{
@@ -44,41 +43,88 @@
     color:var(--cream);
     font-family:'Inter',sans-serif;
     overflow-x:hidden;
-  }
-  ::selection{background:var(--mauve); color:#0d0c0b;}
-
-  .eyebrow{
+}
+::selection{background:var(--mauve); color:#0d0c0b;}
+.eyebrow{
     font-family:'Inter',sans-serif;
     letter-spacing:.28em;
     text-transform:uppercase;
     font-size:11px;
     color:var(--mauve);
     font-weight:600;
-  }
-
+}
   header{
     position:fixed; top:0; left:0; right:0; z-index:50;
     display:flex; justify-content:space-between; align-items:center;
     padding:20px 24px;
     background:linear-gradient(to bottom, rgba(13,12,11,.92), transparent);
-  }
-  .logo{
+    gap:16px;
+}
+.logo{
     font-family:'Anton',sans-serif;
     font-size:20px;
     letter-spacing:.04em;
-  }
-  .logo span{color:var(--mauve);}
+}
+.logo span{color:var(--mauve);}
+  nav{display:flex; align-items:center;}
   nav a{
     color:var(--cream-dim);
     text-decoration:none;
     font-size:13px;
     margin-left:22px;
     letter-spacing:.03em;
-  }
+}
   nav a:hover{color:var(--cream);}
 
+  /* LANGUAGE SWITCHER */
+  #langSwitch{
+    position:relative;
+    margin-left:22px;
+}
+  #langBtn{
+    background:transparent;
+    border:1px solid var(--line);
+    color:var(--cream-dim);
+    font-family:'Inter',sans-serif;
+    font-size:12px;
+    letter-spacing:.05em;
+    padding:8px 12px;
+    cursor:pointer;
+    display:flex; align-items:center; gap:6px;
+    border-radius:4px;
+    transition:border-color .15s ease, color .15s ease;
+}
+  #langBtn:hover{border-color:var(--mauve); color:var(--cream);}
+  #langMenu{
+    position:absolute;
+    top:calc(100% + 8px);
+    right:0;
+    background:var(--panel);
+    border:1px solid var(--line);
+    border-radius:6px;
+    overflow:hidden;
+    display:none;
+    min-width:120px;
+    box-shadow:0 10px 30px rgba(0,0,0,.5);
+}
+  #langMenu.open{display:block;}
+  #langMenu button{
+    display:block;
+    width:100%;
+    background:transparent;
+    border:none;
+    color:var(--cream-dim);
+    font-family:'Inter',sans-serif;
+    font-size:13px;
+    text-align:left;
+    padding:10px 14px;
+    cursor:pointer;
+}
+  #langMenu button:hover{background:var(--bg-soft); color:var(--cream);}
+  #langMenu button.active{color:var(--mauve);}
+
   /* HERO */
-  .hero{
+.hero{
     min-height:100svh;
     display:flex; flex-direction:column; justify-content:center;
     position:relative;
@@ -87,28 +133,28 @@
       radial-gradient(ellipse 80% 60% at 50% 0%, rgba(201,163,151,.10), transparent 60%),
       var(--bg);
     text-align:center;
-  }
-  .hero-eyebrow{margin-bottom:22px;}
-  .hero h1{
+}
+.hero-eyebrow{margin-bottom:22px;}
+.hero h1{
     font-family:'Anton',sans-serif;
     font-weight:400;
     line-height:0.92;
     letter-spacing:.01em;
     text-transform:uppercase;
-  }
-  .hero h1 .line1{
+}
+.hero h1 .line1{
     display:block;
     font-size:clamp(52px,15vw,120px);
     color:var(--cream);
-  }
-  .hero h1 .line2{
+}
+.hero h1 .line2{
     display:block;
     font-size:clamp(52px,15vw,120px);
     color:transparent;
     -webkit-text-stroke:1.5px var(--mauve);
     margin-top:-0.08em;
-  }
-  .hero-sub{
+}
+.hero-sub{
     max-width:480px;
     margin:28px auto 0;
     font-family:'Newsreader',serif;
@@ -116,102 +162,98 @@
     font-size:19px;
     line-height:1.55;
     color:var(--cream-dim);
-  }
-
+}
   /* rotating caption strip — signature element */
-  .strip-wrap{
+.strip-wrap{
     margin-top:56px;
     border-top:1px solid var(--line);
     border-bottom:1px solid var(--line);
     padding:16px 0;
     overflow:hidden;
     position:relative;
-  }
-  .strip{
+}
+.strip{
     display:flex;
     white-space:nowrap;
     animation: scroll 34s linear infinite;
     width:max-content;
-  }
-  .strip span{
+}
+.strip span{
     font-family:'Newsreader',serif;
     font-style:italic;
     font-size:15px;
     color:var(--cream-dim);
     padding:0 40px;
     position:relative;
-  }
-  .strip span::after{
+}
+.strip span::after{
     content:"—";
     position:absolute;
     right:14px;
     color:var(--gold);
-  }
+}
   @keyframes scroll{
     from{transform:translateX(0);}
     to{transform:translateX(-50%);}
-  }
+}
   @media (prefers-reduced-motion: reduce){
-    .strip{animation:none;}
-  }
-
+.strip{animation:none;}
+}
   /* STATS */
-  .stats{
+.stats{
     display:grid;
     grid-template-columns:repeat(4,1fr);
     max-width:820px;
     margin:56px auto 0;
     padding:0 24px;
-  }
-  .stat{text-align:center; padding:0 8px;}
-  .stat b{
+}
+.stat{text-align:center; padding:0 8px;}
+.stat b{
     display:block;
     font-family:'Anton',sans-serif;
     font-size:clamp(22px,5vw,34px);
     color:var(--cream);
-  }
-  .stat small{
+}
+.stat small{
     display:block;
     margin-top:4px;
     font-size:10px;
     letter-spacing:.14em;
     text-transform:uppercase;
     color:var(--cream-dim);
-  }
-
+}
   /* SECTION SHARED */
   section{padding:100px 24px;}
-  .section-head{
+.section-head{
     max-width:640px;
     margin:0 auto 48px;
     text-align:center;
-  }
-  .section-head h2{
+}
+.section-head h2{
     font-family:'Anton',sans-serif;
     font-weight:400;
     text-transform:uppercase;
     font-size:clamp(30px,7vw,48px);
     margin-top:14px;
     line-height:1.02;
-  }
-  .section-head p{
+}
+.section-head p{
     margin-top:16px;
     color:var(--cream-dim);
     font-size:15px;
     line-height:1.6;
-  }
-
+}
   /* DROP / MERCH */
-  .drop{background:var(--bg-soft);}
-  .drop-grid{
+.drop{background:var(--bg-soft);}
+.drop-grid{
     max-width:960px;
     margin:0 auto;
     display:grid;
     grid-template-columns:repeat(3,1fr);
     gap:2px;
     background:var(--line);
-  }
-  .drop-item{
+}
+.drop-item{
     background:var(--panel);
     aspect-ratio:3/4;
     display:flex;
@@ -224,9 +266,9 @@
     color:inherit;
     cursor:pointer;
     transition:background .2s ease;
-  }
-  .drop-item:hover{background:#2a2624;}
-  .drop-item .tag{
+}
+.drop-item:hover{background:#2a2624;}
+.drop-item .tag{
     position:absolute; top:16px; left:16px;
     font-size:10px;
     letter-spacing:.14em;
@@ -234,48 +276,46 @@
     color:var(--gold);
     border:1px solid var(--gold);
     padding:4px 8px;
-  }
-  .drop-item h3{
+}
+.drop-item h3{
     font-family:'Anton',sans-serif;
     font-weight:400;
     font-size:22px;
     text-transform:uppercase;
-  }
-  .drop-item p{
+}
+.drop-item p{
     font-size:12px;
     color:var(--cream-dim);
     margin-top:6px;
-  }
-  .drop-item::before{
+}
+.drop-item::before{
     content:"";
     position:absolute; inset:0;
     background:
       linear-gradient(to top, rgba(13,12,11,.9), rgba(13,12,11,0) 55%),
       repeating-linear-gradient(135deg, rgba(255,255,255,.02) 0 2px, transparent 2px 14px);
-  }
-  .drop-item > *{position:relative; z-index:1;}
-
+}
+.drop-item > *{position:relative; z-index:1;}
   @media (max-width:700px){
-    .drop-grid{grid-template-columns:1fr; }
-    .stats{grid-template-columns:repeat(2,1fr); row-gap:28px;}
-  }
-  .drop-grid-single{
+.drop-grid{grid-template-columns:1fr; }
+.stats{grid-template-columns:repeat(2,1fr); row-gap:28px;}
+}
+.drop-grid-single{
     grid-template-columns:1fr;
     max-width:340px;
-  }
-  .drop-grid-single .drop-item{
+}
+.drop-grid-single .drop-item{
     aspect-ratio:4/5;
-  }
-
+}
   /* EMAIL CAPTURE */
-  .capture{
+.capture{
     max-width:520px;
     margin:56px auto 0;
     display:flex;
     gap:0;
     border:1px solid var(--line);
-  }
-  .capture input{
+}
+.capture input{
     flex:1;
     background:transparent;
     border:none;
@@ -284,9 +324,9 @@
     font-family:'Inter',sans-serif;
     font-size:14px;
     padding:16px 18px;
-  }
-  .capture input::placeholder{color:#6b6459;}
-  .capture button{
+}
+.capture input::placeholder{color:#6b6459;}
+.capture button{
     background:var(--mauve);
     border:none;
     color:#0d0c0b;
@@ -297,81 +337,78 @@
     padding:0 24px;
     cursor:pointer;
     transition:background .2s ease;
-  }
-  .capture button:hover{background:var(--gold);}
-  .capture-note{
+}
+.capture button:hover{background:var(--gold);}
+.capture-note{
     text-align:center;
     font-size:11px;
     color:#6b6459;
     margin-top:12px;
     letter-spacing:.02em;
-  }
-  .capture-msg{
+}
+.capture-msg{
     text-align:center;
     font-size:13px;
     color:var(--mauve);
     margin-top:14px;
     display:none;
-  }
-  .klaviyo-embed-wrap{
+}
+.klaviyo-embed-wrap{
     max-width:520px;
     margin:56px auto 0;
-  }
-
+}
   /* WALL OF QUOTES */
-  .wall{
+.wall{
     max-width:960px;
     margin:0 auto;
     display:grid;
     grid-template-columns:repeat(2,1fr);
     gap:1px;
     background:var(--line);
-  }
-  .quote-card{
+}
+.quote-card{
     background:var(--bg);
     padding:32px 28px;
-  }
-  .quote-card p{
+}
+.quote-card p{
     font-family:'Newsreader',serif;
     font-style:italic;
     font-size:17px;
     line-height:1.55;
     color:var(--cream);
-  }
-  .quote-card span{
+}
+.quote-card span{
     display:block;
     margin-top:14px;
     font-size:11px;
     letter-spacing:.1em;
     text-transform:uppercase;
     color:var(--cream-dim);
-  }
+}
   @media (max-width:700px){
-    .wall{grid-template-columns:1fr;}
-  }
-
+.wall{grid-template-columns:1fr;}
+}
   /* FOOTER */
   footer{
     border-top:1px solid var(--line);
     padding:48px 24px;
     text-align:center;
-  }
+}
   footer .logo{justify-content:center; display:inline-flex; margin-bottom:18px;}
-  .social-row{
+.social-row{
     display:flex; justify-content:center; gap:22px;
     margin-bottom:20px;
-  }
-  .social-row a{
+}
+.social-row a{
     color:var(--cream-dim);
     text-decoration:none;
     font-size:13px;
     letter-spacing:.03em;
     border-bottom:1px solid transparent;
     padding-bottom:2px;
-  }
-  .social-row a:hover{color:var(--cream); border-color:var(--mauve);}
+}
+.social-row a:hover{color:var(--cream); border-color:var(--mauve);}
   footer .fine{font-size:11px; color:#5c564d;}
-
   /* CHAT WIDGET */
   #chatBubble{
     position:fixed; bottom:22px; right:22px; z-index:100;
@@ -382,10 +419,9 @@
     box-shadow:0 4px 18px rgba(0,0,0,.4);
     border:none;
     transition:transform .15s ease;
-  }
+}
   #chatBubble:hover{transform:scale(1.06);}
   #chatBubble svg{width:26px; height:26px;}
-
   #chatPanel{
     position:fixed; bottom:90px; right:22px; z-index:100;
     width:min(320px, calc(100vw - 44px));
@@ -397,37 +433,37 @@
     flex-direction:column;
     overflow:hidden;
     box-shadow:0 10px 40px rgba(0,0,0,.5);
-  }
+}
   #chatPanel.open{display:flex;}
   #chatHeader{
     background:var(--bg-soft);
     padding:16px 18px;
     border-bottom:1px solid var(--line);
     display:flex; justify-content:space-between; align-items:center;
-  }
+}
   #chatHeader .title{
     font-family:'Anton',sans-serif;
     font-size:15px;
     letter-spacing:.02em;
-  }
+}
   #chatHeader .title span{color:var(--mauve);}
   #chatHeader .sub{
     font-size:10px;
     color:var(--cream-dim);
     margin-top:2px;
-  }
+}
   #chatClose{
     background:none; border:none; color:var(--cream-dim);
     font-size:18px; cursor:pointer; line-height:1;
     padding:4px;
-  }
+}
   #chatBody{
     padding:16px 18px;
     overflow-y:auto;
     flex:1;
     display:flex; flex-direction:column; gap:12px;
-  }
-  .chat-msg{
+}
+.chat-msg{
     font-size:13px; line-height:1.5;
     background:var(--bg);
     border:1px solid var(--line);
@@ -435,14 +471,14 @@
     border-radius:8px;
     max-width:88%;
     color:var(--cream);
-  }
-  .chat-msg.bot{align-self:flex-start;}
+}
+.chat-msg.bot{align-self:flex-start;}
   #chatOptions{
     padding:12px 18px 18px;
     border-top:1px solid var(--line);
     display:flex; flex-direction:column; gap:8px;
-  }
-  .chat-option{
+}
+.chat-option{
     background:transparent;
     border:1px solid var(--line);
     color:var(--cream);
@@ -453,100 +489,106 @@
     border-radius:6px;
     cursor:pointer;
     transition:border-color .15s ease, color .15s ease;
-  }
-  .chat-option:hover{border-color:var(--mauve); color:var(--mauve);}
+}
+.chat-option:hover{border-color:var(--mauve); color:var(--mauve);}
 </style>
 </head>
 <body>
-
 <header>
   <div class="logo">SOLID<span>22</span></div>
   <nav>
-    <a href="#drop">The Drop</a>
-    <a href="#words">Words</a>
-    <a href="#follow">Follow</a>
+    <a href="#drop" data-i18n="nav_drop">The Drop</a>
+    <a href="#words" data-i18n="nav_words">Words</a>
+    <a href="#follow" data-i18n="nav_follow">Follow</a>
+    <div id="langSwitch">
+      <button id="langBtn" onclick="toggleLangMenu()">🌐 <span id="langBtnLabel">EN</span></button>
+      <div id="langMenu">
+        <button data-lang="en" onclick="setLanguage('en')">English</button>
+        <button data-lang="es" onclick="setLanguage('es')">Español</button>
+        <button data-lang="fr" onclick="setLanguage('fr')">Français</button>
+      </div>
+    </div>
   </nav>
 </header>
 
 <section class="hero">
-  <div class="hero-eyebrow">Fitness &amp; Love Messages</div>
+  <div class="hero-eyebrow eyebrow" data-i18n="hero_eyebrow">Fitness &amp; Love Messages</div>
   <h1>
-    <span class="line1">Discipline</span>
-    <span class="line2">Devotion</span>
+    <span class="line1" data-i18n="hero_line1">Discipline</span>
+    <span class="line2" data-i18n="hero_line2">Devotion</span>
   </h1>
-  <p class="hero-sub">Built in a room with a barbell, some laundry, and a lot on my mind. Merch is coming — for the ones who feel deeply and still show up.</p>
+  <p class="hero-sub" data-i18n="hero_sub">Built in a room with a barbell, some laundry, and a lot on my mind. Merch is coming — for the ones who feel deeply and still show up.</p>
 
   <div class="strip-wrap">
     <div class="strip" id="strip"></div>
   </div>
 
   <div class="stats">
-    <div class="stat"><b>842</b><small>IG Followers</small></div>
-    <div class="stat"><b>43.9K</b><small>YT Views</small></div>
-    <div class="stat"><b>1.2K</b><small>Views / 30 days</small></div>
-    <div class="stat"><b>66</b><small>Posts &amp; Counting</small></div>
+    <div class="stat"><b>842</b><small data-i18n="stat_ig">IG Followers</small></div>
+    <div class="stat"><b>43.9K</b><small data-i18n="stat_yt">YT Views</small></div>
+    <div class="stat"><b>1.2K</b><small data-i18n="stat_30d">Views / 30 days</small></div>
+    <div class="stat"><b>66</b><small data-i18n="stat_posts">Posts &amp; Counting</small></div>
   </div>
 </section>
 
 <section class="drop" id="drop">
   <div class="section-head">
-    <div class="eyebrow">Coming Soon</div>
-    <h2>The First Drop</h2>
-    <p>Apparel built the same way the posts are — plain, honest, a little heavy. Get on the list to buy before it's gone.</p>
+    <div class="eyebrow" data-i18n="drop_eyebrow">Coming Soon</div>
+    <h2 data-i18n="drop_h2">The First Drop</h2>
+    <p data-i18n="drop_p">Apparel built the same way the posts are — plain, honest, a little heavy. Get on the list to buy before it's gone.</p>
   </div>
 
   <div class="drop-grid" style="max-width:640px; margin:0 auto; grid-template-columns:repeat(2,1fr);">
-    
     <a class="drop-item" href="https://solid22-shop.fourthwall.com/products/missing-you-text-graphic-tee" target="_blank" rel="noopener">
-  <img src="./tee.png" alt="Missing You Tee" style="position:absolute; inset:0; width:100%; height:100%; object-fit:cover; z-index:0;">
-  <span class="tag">First Drop</span>
-  <h3>Missing You Tee</h3>
-  <p>Boxy fit, back print — "If you think missing me is hard, then you should try missing you."</p>
-</a>
-<a class="drop-item" href="https://solid22-shop.fourthwall.com/products/try-missing-you-dad-hat" target="_blank" rel="noopener">
-  <img src="./Cap.png" alt="Try Missing You Dad Hat" style="position:absolute; inset:0; width:100%; height:100%; object-fit:cover; z-index:0;">
-  <span class="tag">First Drop</span>
-  <h3>Try Missing You Dad Hat</h3>
-  <p>Embroidered dad hat — same line, stitched instead of printed.</p>
-</a>
+      <img src="./tee.png" alt="Missing You Tee" style="position:absolute; inset:0; width:100%; height:100%; object-fit:cover; z-index:0;">
+      <span class="tag" data-i18n="drop_tag">First Drop</span>
+      <h3 data-i18n="item1_title">Missing You Tee</h3>
+      <p data-i18n="item1_desc">Boxy fit, back print — "If you think missing me is hard, then you should try missing you."</p>
+    </a>
+    <a class="drop-item" href="https://solid22-shop.fourthwall.com/products/try-missing-you-dad-hat" target="_blank" rel="noopener">
+      <img src="./Cap.png" alt="Try Missing You Dad Hat" style="position:absolute; inset:0; width:100%; height:100%; object-fit:cover; z-index:0;">
+      <span class="tag" data-i18n="drop_tag">First Drop</span>
+      <h3 data-i18n="item2_title">Try Missing You Dad Hat</h3>
+      <p data-i18n="item2_desc">Embroidered dad hat — same line, stitched instead of printed.</p>
+    </a>
   </div>
 
   <div style="text-align:center; margin-top:40px;">
     <a href="https://solid22-shop.fourthwall.com" target="_blank" rel="noopener"
        style="display:inline-block; background:var(--mauve); color:#0d0c0b; font-weight:600;
-              font-size:13px; letter-spacing:.04em; text-transform:uppercase;
-              padding:16px 36px; text-decoration:none;">
-      Shop The Drop
+font-size:13px; letter-spacing:.04em; text-transform:uppercase;
+padding:16px 36px; text-decoration:none;" data-i18n="shop_btn">
+Shop The Drop
     </a>
   </div>
 
   <div class="klaviyo-embed-wrap">
     <div class="klaviyo-form-Vc74tq"></div>
   </div>
-  <p class="capture-note">Prefer email updates instead? Drop it above — no spam.</p>
+  <p class="capture-note" data-i18n="capture_note">Prefer email updates instead? Drop it above — no spam.</p>
 </section>
 
 <section id="words">
   <div class="section-head">
-    <div class="eyebrow">From The Page</div>
-    <h2>In My Own Words</h2>
+    <div class="eyebrow" data-i18n="words_eyebrow">From The Page</div>
+    <h2 data-i18n="words_h2">In My Own Words</h2>
   </div>
   <div class="wall">
     <div class="quote-card">
-      <p>"It's hard to go through life without the one who makes you happy."</p>
-      <span>Reel — 3 views logged today</span>
+      <p data-i18n="quote1">"It's hard to go through life without the one who makes you happy."</p>
+      <span data-i18n="quote1_meta">Reel — 3 views logged today</span>
     </div>
     <div class="quote-card">
-      <p>"A day without you is like laundry without soap. I miss you."</p>
-      <span>Reel — 24 views logged</span>
+      <p data-i18n="quote2">"A day without you is like laundry without soap. I miss you."</p>
+      <span data-i18n="quote2_meta">Reel — 24 views logged</span>
     </div>
     <div class="quote-card">
-      <p>"If you think missing me is hard, then you should try missing you."</p>
-      <span>Reel — 1.3K views</span>
+      <p data-i18n="quote3">"If you think missing me is hard, then you should try missing you."</p>
+      <span data-i18n="quote3_meta">Reel — 1.3K views</span>
     </div>
     <div class="quote-card">
-      <p>"Missing you is like taking the sun out of the sky and leaving the world dark, cold, and helpless."</p>
-      <span>Reel — 1.2K views</span>
+      <p data-i18n="quote4">"Missing you is like taking the sun out of the sky and leaving the world dark, cold, and helpless."</p>
+      <span data-i18n="quote4_meta">Reel — 1.2K views</span>
     </div>
   </div>
 </section>
@@ -558,7 +600,7 @@
     <a href="https://www.instagram.com/solid22_/" target="_blank" rel="noopener">Instagram — @solid22_</a>
     <a href="https://www.youtube.com/@Solid22_6" target="_blank" rel="noopener">YouTube — Solid22</a>
   </div>
-  <p class="fine">© 2026 Solid22. Built on discipline, written from the heart.</p>
+  <p class="fine" data-i18n="footer_fine">© 2026 Solid22. Built on discipline, written from the heart.</p>
 </footer>
 
 <button id="chatBubble" aria-label="Open chat" onclick="toggleChat()">
@@ -571,66 +613,239 @@
   <div id="chatHeader">
     <div>
       <div class="title">SOLID<span>22</span></div>
-      <div class="sub">Usually replies personally</div>
+      <div class="sub" data-i18n="chat_sub">Usually replies personally</div>
     </div>
     <button id="chatClose" onclick="toggleChat()">✕</button>
   </div>
   <div id="chatBody">
-    <div class="chat-msg bot">Hey — thanks for stopping by. What can I help with?</div>
+    <div class="chat-msg bot" id="chatGreeting" data-i18n="chat_greeting">Hey — thanks for stopping by. What can I help with?</div>
   </div>
   <div id="chatOptions">
-    <button class="chat-option" onclick="askChat('drop')">When's the next drop?</button>
-    <button class="chat-option" onclick="askChat('shipping')">Shipping &amp; sizing?</button>
-    <button class="chat-option" onclick="askChat('updates')">How do I get updates?</button>
-    <button class="chat-option" onclick="askChat('contact')">Talk to a real person</button>
+    <button class="chat-option" onclick="askChat('drop')" data-i18n="chat_opt_drop">When's the next drop?</button>
+    <button class="chat-option" onclick="askChat('shipping')" data-i18n="chat_opt_shipping">Shipping &amp; sizing?</button>
+    <button class="chat-option" onclick="askChat('updates')" data-i18n="chat_opt_updates">How do I get updates?</button>
+    <button class="chat-option" onclick="askChat('contact')" data-i18n="chat_opt_contact">Talk to a real person</button>
   </div>
 </div>
 
 <script>
-  const quotes = [
-    "It's hard to go through life without the one who makes you happy.",
-    "A day without you is like laundry without soap.",
-    "If you think missing me is hard, try missing you.",
-    "Missing you is like taking the sun out of the sky.",
-    "Getting over you was hard — not sure I ever will be.",
-    "New posts weekly. Building mind and body."
-  ];
-  const strip = document.getElementById('strip');
-  const doubled = [...quotes, ...quotes];
-  strip.innerHTML = doubled.map(q => `<span>${q}</span>`).join('');
+  // ---------- TRANSLATIONS ----------
+  const translations = {
+    en: {
+      nav_drop: "The Drop", nav_words: "Words", nav_follow: "Follow",
+      hero_eyebrow: "Fitness & Love Messages",
+      hero_line1: "Discipline", hero_line2: "Devotion",
+      hero_sub: "Built in a room with a barbell, some laundry, and a lot on my mind. Merch is coming — for the ones who feel deeply and still show up.",
+      stat_ig: "IG Followers", stat_yt: "YT Views", stat_30d: "Views / 30 days", stat_posts: "Posts & Counting",
+      drop_eyebrow: "Coming Soon", drop_h2: "The First Drop",
+      drop_p: "Apparel built the same way the posts are — plain, honest, a little heavy. Get on the list to buy before it's gone.",
+      drop_tag: "First Drop",
+      item1_title: "Missing You Tee",
+      item1_desc: "Boxy fit, back print — \"If you think missing me is hard, then you should try missing you.\"",
+      item2_title: "Try Missing You Dad Hat",
+      item2_desc: "Embroidered dad hat — same line, stitched instead of printed.",
+      shop_btn: "Shop The Drop",
+      capture_note: "Prefer email updates instead? Drop it above — no spam.",
+      words_eyebrow: "From The Page", words_h2: "In My Own Words",
+      quote1: "\"It's hard to go through life without the one who makes you happy.\"",
+      quote1_meta: "Reel — 3 views logged today",
+      quote2: "\"A day without you is like laundry without soap. I miss you.\"",
+      quote2_meta: "Reel — 24 views logged",
+      quote3: "\"If you think missing me is hard, then you should try missing you.\"",
+      quote3_meta: "Reel — 1.3K views",
+      quote4: "\"Missing you is like taking the sun out of the sky and leaving the world dark, cold, and helpless.\"",
+      quote4_meta: "Reel — 1.2K views",
+      footer_fine: "© 2026 Solid22. Built on discipline, written from the heart.",
+      chat_sub: "Usually replies personally",
+      chat_greeting: "Hey — thanks for stopping by. What can I help with?",
+      chat_opt_drop: "When's the next drop?",
+      chat_opt_shipping: "Shipping & sizing?",
+      chat_opt_updates: "How do I get updates?",
+      chat_opt_contact: "Talk to a real person",
+      chat_ans_drop: "The Unpopular Opinion Tee is live right now — grab it before it's gone. Tap \"Shop The Drop\" up top to check it out.",
+      chat_ans_shipping: "Orders ship through Fourthwall, usually within 3-5 business days. Sizing runs true to standard unisex tees — check the size chart on the product page if you're between sizes.",
+      chat_ans_updates: "Drop your email in the signup box above the drop section — no spam, just a heads up when new stuff releases.",
+      chat_ans_contact: "Best way to reach me directly is Instagram — @solid22_. I read every DM myself.",
+      strip_quotes: [
+        "It's hard to go through life without the one who makes you happy.",
+        "A day without you is like laundry without soap.",
+        "If you think missing me is hard, try missing you.",
+        "Missing you is like taking the sun out of the sky.",
+        "Getting over you was hard — not sure I ever will be.",
+        "New posts weekly. Building mind and body."
+      ]
+    },
+    es: {
+      nav_drop: "El Lanzamiento", nav_words: "Palabras", nav_follow: "Síguenos",
+      hero_eyebrow: "Fitness y Mensajes de Amor",
+      hero_line1: "Disciplina", hero_line2: "Devoción",
+      hero_sub: "Construido en un cuarto con una barra, algo de ropa por lavar, y muchas cosas en mente. La mercancía ya viene — para quienes sienten profundo y aun así siguen adelante.",
+      stat_ig: "Seguidores IG", stat_yt: "Vistas YT", stat_30d: "Vistas / 30 días", stat_posts: "Publicaciones y contando",
+      drop_eyebrow: "Muy Pronto", drop_h2: "El Primer Lanzamiento",
+      drop_p: "Ropa hecha igual que los posts — simple, honesta, un poco pesada. Únete a la lista para comprar antes de que se agote.",
+      drop_tag: "Primer Lanzamiento",
+      item1_title: "Camiseta Missing You",
+      item1_desc: "Corte ancho, estampado en la espalda — \"Si crees que extrañarme es difícil, deberías intentar extrañarte a ti mismo.\"",
+      item2_title: "Gorra Try Missing You",
+      item2_desc: "Gorra bordada — la misma frase, bordada en vez de impresa.",
+      shop_btn: "Ver la Tienda",
+      capture_note: "¿Prefieres recibir novedades por correo? Déjalo arriba — sin spam.",
+      words_eyebrow: "Desde la Página", words_h2: "En Mis Propias Palabras",
+      quote1: "\"Es difícil vivir sin quien te hace feliz.\"",
+      quote1_meta: "Reel — 3 vistas hoy",
+      quote2: "\"Un día sin ti es como lavar la ropa sin jabón. Te extraño.\"",
+      quote2_meta: "Reel — 24 vistas",
+      quote3: "\"Si crees que extrañarme es difícil, deberías intentar extrañarte a ti mismo.\"",
+      quote3_meta: "Reel — 1.3K vistas",
+      quote4: "\"Extrañarte es como quitar el sol del cielo y dejar el mundo oscuro, frío y desamparado.\"",
+      quote4_meta: "Reel — 1.2K vistas",
+      footer_fine: "© 2026 Solid22. Construido con disciplina, escrito desde el corazón.",
+      chat_sub: "Normalmente respondo yo mismo",
+      chat_greeting: "Hola — gracias por pasar. ¿En qué puedo ayudarte?",
+      chat_opt_drop: "¿Cuándo es el próximo lanzamiento?",
+      chat_opt_shipping: "¿Envío y tallas?",
+      chat_opt_updates: "¿Cómo recibo novedades?",
+      chat_opt_contact: "Hablar con una persona real",
+      chat_ans_drop: "La camiseta Unpopular Opinion ya está disponible — consíguela antes de que se agote. Toca \"Ver la Tienda\" arriba para verla.",
+      chat_ans_shipping: "Los pedidos se envían por Fourthwall, normalmente en 3-5 días hábiles. Las tallas son estándar unisex — revisa la tabla de tallas en la página del producto si tienes dudas.",
+      chat_ans_updates: "Deja tu correo en el cuadro de arriba — sin spam, solo un aviso cuando salga algo nuevo.",
+      chat_ans_contact: "La mejor forma de contactarme es por Instagram — @solid22_. Leo todos los mensajes yo mismo.",
+      strip_quotes: [
+        "Es difícil vivir sin quien te hace feliz.",
+        "Un día sin ti es como lavar la ropa sin jabón.",
+        "Si crees que extrañarme es difícil, intenta extrañarte a ti mismo.",
+        "Extrañarte es como quitar el sol del cielo.",
+        "Superarte fue difícil — no sé si algún día lo logre.",
+        "Publicaciones nuevas cada semana. Construyendo mente y cuerpo."
+      ]
+    },
+    fr: {
+      nav_drop: "La Sortie", nav_words: "Mots", nav_follow: "Suivre",
+      hero_eyebrow: "Fitness & Messages d'Amour",
+      hero_line1: "Discipline", hero_line2: "Dévotion",
+      hero_sub: "Construit dans une chambre avec une barre, du linge à faire, et beaucoup en tête. Les articles arrivent bientôt — pour ceux qui ressentent profondément et se montrent quand même.",
+      stat_ig: "Abonnés IG", stat_yt: "Vues YT", stat_30d: "Vues / 30 jours", stat_posts: "Publications et ça continue",
+      drop_eyebrow: "Bientôt Disponible", drop_h2: "La Première Sortie",
+      drop_p: "Des vêtements faits comme les publications — simples, honnêtes, un peu lourds. Inscrivez-vous pour acheter avant rupture de stock.",
+      drop_tag: "Première Sortie",
+      item1_title: "T-shirt Missing You",
+      item1_desc: "Coupe ample, impression au dos — \"Si tu crois que c'est dur de me manquer, essaie de te manquer à toi-même.\"",
+      item2_title: "Casquette Try Missing You",
+      item2_desc: "Casquette brodée — même phrase, brodée au lieu d'imprimée.",
+      shop_btn: "Voir la Boutique",
+      capture_note: "Vous préférez les mises à jour par e-mail ? Laissez-le ci-dessus — pas de spam.",
+      words_eyebrow: "Depuis la Page", words_h2: "Dans Mes Propres Mots",
+      quote1: "\"C'est dur de traverser la vie sans celui ou celle qui te rend heureux.\"",
+      quote1_meta: "Reel — 3 vues aujourd'hui",
+      quote2: "\"Une journée sans toi, c'est comme faire la lessive sans savon. Tu me manques.\"",
+      quote2_meta: "Reel — 24 vues",
+      quote3: "\"Si tu crois que c'est dur de me manquer, essaie de te manquer à toi-même.\"",
+      quote3_meta: "Reel — 1,3K vues",
+      quote4: "\"Tu me manques comme si on enlevait le soleil du ciel, laissant le monde sombre, froid et impuissant.\"",
+      quote4_meta: "Reel — 1,2K vues",
+      footer_fine: "© 2026 Solid22. Construit avec discipline, écrit avec le cœur.",
+      chat_sub: "Je réponds généralement moi-même",
+      chat_greeting: "Salut — merci de ta visite. Comment puis-je t'aider ?",
+      chat_opt_drop: "C'est quand la prochaine sortie ?",
+      chat_opt_shipping: "Livraison et tailles ?",
+      chat_opt_updates: "Comment recevoir les mises à jour ?",
+      chat_opt_contact: "Parler à une vraie personne",
+      chat_ans_drop: "Le t-shirt Unpopular Opinion est disponible dès maintenant — prends-le avant rupture de stock. Touche \"Voir la Boutique\" en haut pour le découvrir.",
+      chat_ans_shipping: "Les commandes sont expédiées via Fourthwall, généralement sous 3 à 5 jours ouvrés. Les tailles sont unisexes standards — consulte le guide des tailles sur la page produit en cas de doute.",
+      chat_ans_updates: "Laisse ton e-mail dans le champ ci-dessus — pas de spam, juste un avis quand du nouveau sort.",
+      chat_ans_contact: "Le meilleur moyen de me contacter directement est Instagram — @solid22_. Je lis chaque message moi-même.",
+      strip_quotes: [
+        "C'est dur de traverser la vie sans celui qui te rend heureux.",
+        "Une journée sans toi, c'est comme la lessive sans savon.",
+        "Si tu crois que c'est dur de me manquer, essaie de te manquer à toi-même.",
+        "Tu me manques comme si on enlevait le soleil du ciel.",
+        "T'oublier a été dur — je ne suis pas sûr d'y arriver un jour.",
+        "Nouvelles publications chaque semaine. On construit le corps et l'esprit."
+      ]
+    }
+  };
+
+  let currentLang = localStorage_safe_get() || 'en';
+
+  function localStorage_safe_get(){
+    try { return null; } catch(e){ return null; }
+  }
+
+  function applyLanguage(lang){
+    currentLang = lang;
+    const dict = translations[lang];
+    document.querySelectorAll('[data-i18n]').forEach(el => {
+      const key = el.getAttribute('data-i18n');
+      if (dict[key] !== undefined) {
+        el.innerHTML = dict[key];
+      }
+    });
+    document.documentElement.lang = lang;
+    document.getElementById('langBtnLabel').textContent = lang.toUpperCase();
+    document.querySelectorAll('#langMenu button').forEach(b => {
+      b.classList.toggle('active', b.getAttribute('data-lang') === lang);
+    });
+    renderStrip();
+  }
+
+  function setLanguage(lang){
+    applyLanguage(lang);
+    document.getElementById('langMenu').classList.remove('open');
+  }
+
+  function toggleLangMenu(){
+    document.getElementById('langMenu').classList.toggle('open');
+  }
+
+  document.addEventListener('click', function(e){
+    const wrap = document.getElementById('langSwitch');
+    if (!wrap.contains(e.target)) {
+      document.getElementById('langMenu').classList.remove('open');
+    }
+  });
+
+  // ---------- ROTATING STRIP ----------
+  function renderStrip(){
+    const quotes = translations[currentLang].strip_quotes;
+    const strip = document.getElementById('strip');
+    const doubled = [...quotes, ...quotes];
+    strip.innerHTML = doubled.map(q => `<span>${q}</span>`).join('');
+  }
 
   // Chat widget
   function toggleChat(){
     document.getElementById('chatPanel').classList.toggle('open');
   }
 
-  const chatAnswers = {
-    drop: "The Unpopular Opinion Tee is live right now — grab it before it's gone. Tap \"Shop The Drop\" up top to check it out.",
-    shipping: "Orders ship through Fourthwall, usually within 3-5 business days. Sizing runs true to standard unisex tees — check the size chart on the product page if you're between sizes.",
-    updates: "Drop your email in the signup box above the drop section — no spam, just a heads up when new stuff releases.",
-    contact: "Best way to reach me directly is Instagram — @solid22_. I read every DM myself."
-  };
-
   function askChat(key){
+    const dict = translations[currentLang];
     const body = document.getElementById('chatBody');
-    const userLabels = {
-      drop: "When's the next drop?",
-      shipping: "Shipping & sizing?",
-      updates: "How do I get updates?",
-      contact: "Talk to a real person"
+
+    const userLabelKeys = {
+      drop: 'chat_opt_drop',
+      shipping: 'chat_opt_shipping',
+      updates: 'chat_opt_updates',
+      contact: 'chat_opt_contact'
     };
+    const answerKeys = {
+      drop: 'chat_ans_drop',
+      shipping: 'chat_ans_shipping',
+      updates: 'chat_ans_updates',
+      contact: 'chat_ans_contact'
+    };
+
     const userMsg = document.createElement('div');
     userMsg.className = 'chat-msg';
     userMsg.style.alignSelf = 'flex-end';
     userMsg.style.background = 'var(--mauve)';
     userMsg.style.color = '#0d0c0b';
     userMsg.style.border = 'none';
-    userMsg.textContent = userLabels[key];
+    userMsg.textContent = dict[userLabelKeys[key]];
     body.appendChild(userMsg);
 
     const botMsg = document.createElement('div');
     botMsg.className = 'chat-msg bot';
-    botMsg.textContent = chatAnswers[key];
+    botMsg.textContent = dict[answerKeys[key]];
     body.appendChild(botMsg);
 
     body.scrollTop = body.scrollHeight;
@@ -642,8 +857,9 @@
       navigator.serviceWorker.register('./service-worker.js').catch(() => {});
     });
   }
-</script>
 
+  // Init
+  applyLanguage(currentLang);
+</script>
 </body>
 </html>
-
