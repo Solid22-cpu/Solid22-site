@@ -20,6 +20,9 @@
 <meta name="twitter:image" content="https://solid22-cpu.github.io/Solid22-site/icon.svg">
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link href="https://fonts.googleapis.com/css2?family=Anton&family=Newsreader:ital,opsz,wght@0,6..72,400;0,6..72,500;1,6..72,400&family=Inter:wght@400;500;600&display=swap" rel="stylesheet">
+<script src="https://www.gstatic.com/firebasejs/10.13.2/firebase-app-compat.js"></script>
+<script src="https://www.gstatic.com/firebasejs/10.13.2/firebase-auth-compat.js"></script>
+<script src="https://www.gstatic.com/firebasejs/10.13.2/firebase-firestore-compat.js"></script>
 <script async type='text/javascript' src='https://static.klaviyo.com/onsite/js/XHmv59/klaviyo.js?company_id=XHmv59'></script>
 <script type="text/javascript">
 //Initialize Klaviyo object on page load
@@ -500,6 +503,7 @@
     <a href="#drop" data-i18n="nav_drop">The Drop</a>
     <a href="#words" data-i18n="nav_words">Words</a>
     <a href="#follow" data-i18n="nav_follow">Follow</a>
+    <a href="#community" data-i18n="nav_community">Community</a>
     <div id="langSwitch">
       <button id="langBtn" onclick="toggleLangMenu()">🌐 <span id="langBtnLabel">EN</span></button>
       <div id="langMenu">
@@ -597,6 +601,54 @@ Shop The Drop
   </div>
 </section>
 
+<section id="community" style="background:var(--bg-soft);">
+  <div class="section-head">
+    <div class="eyebrow" data-i18n="community_eyebrow">Members Only</div>
+    <h2 data-i18n="community_h2">The Community</h2>
+    <p data-i18n="community_p">Share your own words. See what others are carrying too.</p>
+  </div>
+
+  <div style="max-width:420px; margin:0 auto;">
+
+    <!-- LOGGED OUT VIEW -->
+    <div id="authBox">
+      <div style="display:flex; gap:8px; margin-bottom:20px;">
+        <button id="tabLogin" onclick="showAuthTab('login')" style="flex:1; background:var(--mauve); color:#0d0c0b; border:none; padding:12px; font-weight:600; cursor:pointer; border-radius:6px 0 0 6px;" data-i18n="tab_login">Log In</button>
+        <button id="tabSignup" onclick="showAuthTab('signup')" style="flex:1; background:var(--panel); color:var(--cream); border:none; padding:12px; font-weight:600; cursor:pointer; border-radius:0 6px 6px 0;" data-i18n="tab_signup">Sign Up</button>
+      </div>
+
+      <div id="loginForm">
+        <input type="email" id="loginEmail" placeholder="Email" data-i18n-placeholder="ph_email" style="width:100%; padding:14px; margin-bottom:10px; background:var(--panel); border:1px solid var(--line); color:var(--cream); border-radius:6px; font-family:'Inter',sans-serif;">
+        <input type="password" id="loginPassword" placeholder="Password" data-i18n-placeholder="ph_password" style="width:100%; padding:14px; margin-bottom:14px; background:var(--panel); border:1px solid var(--line); color:var(--cream); border-radius:6px; font-family:'Inter',sans-serif;">
+        <button onclick="doLogin()" style="width:100%; background:var(--mauve); color:#0d0c0b; border:none; padding:14px; font-weight:600; text-transform:uppercase; letter-spacing:.04em; font-size:13px; cursor:pointer; border-radius:6px;" data-i18n="btn_login">Log In</button>
+        <p id="loginError" style="color:#e08080; font-size:12px; margin-top:10px; display:none;"></p>
+      </div>
+
+      <div id="signupForm" style="display:none;">
+        <input type="text" id="signupName" placeholder="Display name" data-i18n-placeholder="ph_name" style="width:100%; padding:14px; margin-bottom:10px; background:var(--panel); border:1px solid var(--line); color:var(--cream); border-radius:6px; font-family:'Inter',sans-serif;">
+        <input type="email" id="signupEmail" placeholder="Email" data-i18n-placeholder="ph_email" style="width:100%; padding:14px; margin-bottom:10px; background:var(--panel); border:1px solid var(--line); color:var(--cream); border-radius:6px; font-family:'Inter',sans-serif;">
+        <input type="password" id="signupPassword" placeholder="Password (6+ characters)" data-i18n-placeholder="ph_password_new" style="width:100%; padding:14px; margin-bottom:14px; background:var(--panel); border:1px solid var(--line); color:var(--cream); border-radius:6px; font-family:'Inter',sans-serif;">
+        <button onclick="doSignup()" style="width:100%; background:var(--mauve); color:#0d0c0b; border:none; padding:14px; font-weight:600; text-transform:uppercase; letter-spacing:.04em; font-size:13px; cursor:pointer; border-radius:6px;" data-i18n="btn_signup">Create Account</button>
+        <p id="signupError" style="color:#e08080; font-size:12px; margin-top:10px; display:none;"></p>
+      </div>
+    </div>
+
+    <!-- LOGGED IN VIEW -->
+    <div id="feedBox" style="display:none;">
+      <div style="display:flex; justify-content:space-between; align-items:center; margin-bottom:18px;">
+        <span style="font-size:13px; color:var(--cream-dim);" id="welcomeMsg"></span>
+        <button onclick="doLogout()" style="background:transparent; border:1px solid var(--line); color:var(--cream-dim); font-size:12px; padding:8px 14px; border-radius:6px; cursor:pointer;" data-i18n="btn_logout">Log Out</button>
+      </div>
+
+      <textarea id="postText" placeholder="Share something..." data-i18n-placeholder="ph_post" style="width:100%; min-height:80px; padding:14px; margin-bottom:10px; background:var(--panel); border:1px solid var(--line); color:var(--cream); border-radius:6px; font-family:'Newsreader',serif; font-style:italic; resize:vertical;"></textarea>
+      <button onclick="submitPost()" style="width:100%; background:var(--mauve); color:#0d0c0b; border:none; padding:14px; font-weight:600; text-transform:uppercase; letter-spacing:.04em; font-size:13px; cursor:pointer; border-radius:6px; margin-bottom:30px;" data-i18n="btn_post">Post</button>
+
+      <div id="feedList"></div>
+    </div>
+
+  </div>
+</section>
+
 <footer id="follow">
   <div class="logo">SOLID<span>22</span></div>
   <div class="social-row">
@@ -636,7 +688,12 @@ Shop The Drop
   // ---------- TRANSLATIONS ----------
   const translations = {
     en: {
-      nav_drop: "The Drop", nav_words: "Words", nav_follow: "Follow",
+      nav_drop: "The Drop", nav_words: "Words", nav_follow: "Follow", nav_community: "Community",
+      community_eyebrow: "Members Only", community_h2: "The Community",
+      community_p: "Share your own words. See what others are carrying too.",
+      tab_login: "Log In", tab_signup: "Sign Up",
+      ph_email: "Email", ph_password: "Password", ph_password_new: "Password (6+ characters)", ph_name: "Display name", ph_post: "Share something...",
+      btn_login: "Log In", btn_signup: "Create Account", btn_logout: "Log Out", btn_post: "Post",
       hero_eyebrow: "Fitness & Love Messages",
       hero_line1: "Discipline", hero_line2: "Devotion",
       hero_sub: "Built in a room with a barbell, some laundry, and a lot on my mind. Merch is coming — for the ones who feel deeply and still show up.",
@@ -682,7 +739,12 @@ Shop The Drop
       ]
     },
     es: {
-      nav_drop: "El Lanzamiento", nav_words: "Palabras", nav_follow: "Síguenos",
+      nav_drop: "El Lanzamiento", nav_words: "Palabras", nav_follow: "Síguenos", nav_community: "Comunidad",
+      community_eyebrow: "Solo Miembros", community_h2: "La Comunidad",
+      community_p: "Comparte tus propias palabras. Mira lo que otros también llevan por dentro.",
+      tab_login: "Iniciar Sesión", tab_signup: "Registrarse",
+      ph_email: "Correo", ph_password: "Contraseña", ph_password_new: "Contraseña (6+ caracteres)", ph_name: "Nombre a mostrar", ph_post: "Comparte algo...",
+      btn_login: "Iniciar Sesión", btn_signup: "Crear Cuenta", btn_logout: "Cerrar Sesión", btn_post: "Publicar",
       hero_eyebrow: "Fitness y Mensajes de Amor",
       hero_line1: "Disciplina", hero_line2: "Devoción",
       hero_sub: "Construido en un cuarto con una barra, algo de ropa por lavar, y muchas cosas en mente. La mercancía ya viene — para quienes sienten profundo y aun así siguen adelante.",
@@ -728,7 +790,12 @@ Shop The Drop
       ]
     },
     fr: {
-      nav_drop: "La Sortie", nav_words: "Mots", nav_follow: "Suivre",
+      nav_drop: "La Sortie", nav_words: "Mots", nav_follow: "Suivre", nav_community: "Communauté",
+      community_eyebrow: "Membres Uniquement", community_h2: "La Communauté",
+      community_p: "Partage tes propres mots. Découvre ce que les autres portent aussi.",
+      tab_login: "Connexion", tab_signup: "S'inscrire",
+      ph_email: "E-mail", ph_password: "Mot de passe", ph_password_new: "Mot de passe (6+ caractères)", ph_name: "Nom affiché", ph_post: "Partage quelque chose...",
+      btn_login: "Connexion", btn_signup: "Créer un compte", btn_logout: "Déconnexion", btn_post: "Publier",
       hero_eyebrow: "Fitness & Messages d'Amour",
       hero_line1: "Discipline", hero_line2: "Dévotion",
       hero_sub: "Construit dans une chambre avec une barre, du linge à faire, et beaucoup en tête. Les articles arrivent bientôt — pour ceux qui ressentent profondément et se montrent quand même.",
@@ -788,6 +855,12 @@ Shop The Drop
       const key = el.getAttribute('data-i18n');
       if (dict[key] !== undefined) {
         el.innerHTML = dict[key];
+      }
+    });
+    document.querySelectorAll('[data-i18n-placeholder]').forEach(el => {
+      const key = el.getAttribute('data-i18n-placeholder');
+      if (dict[key] !== undefined) {
+        el.placeholder = dict[key];
       }
     });
     document.documentElement.lang = lang;
@@ -859,6 +932,121 @@ Shop The Drop
     body.appendChild(botMsg);
 
     body.scrollTop = body.scrollHeight;
+  }
+
+  // ---------- COMMUNITY FEED (Firebase) ----------
+  const firebaseConfig = {
+    apiKey: "AIzaSyCXKjnxnw4SeLsLsFWmqip-UB-Vadk0244",
+    authDomain: "solid22-community.firebaseapp.com",
+    projectId: "solid22-community",
+    storageBucket: "solid22-community.firebasestorage.app",
+    messagingSenderId: "622993559621",
+    appId: "1:622993559621:web:8f5f5929d95d146d29d32c"
+  };
+  firebase.initializeApp(firebaseConfig);
+  const auth = firebase.auth();
+  const db = firebase.firestore();
+
+  function showAuthTab(tab){
+    const login = document.getElementById('loginForm');
+    const signup = document.getElementById('signupForm');
+    const tabLogin = document.getElementById('tabLogin');
+    const tabSignup = document.getElementById('tabSignup');
+    if (tab === 'login'){
+      login.style.display = 'block'; signup.style.display = 'none';
+      tabLogin.style.background = 'var(--mauve)'; tabLogin.style.color = '#0d0c0b';
+      tabSignup.style.background = 'var(--panel)'; tabSignup.style.color = 'var(--cream)';
+    } else {
+      login.style.display = 'none'; signup.style.display = 'block';
+      tabSignup.style.background = 'var(--mauve)'; tabSignup.style.color = '#0d0c0b';
+      tabLogin.style.background = 'var(--panel)'; tabLogin.style.color = 'var(--cream)';
+    }
+  }
+
+  function doSignup(){
+    const name = document.getElementById('signupName').value.trim();
+    const email = document.getElementById('signupEmail').value.trim();
+    const password = document.getElementById('signupPassword').value;
+    const errEl = document.getElementById('signupError');
+    errEl.style.display = 'none';
+    if (!name || !email || !password){
+      errEl.textContent = 'Please fill in all fields.';
+      errEl.style.display = 'block';
+      return;
+    }
+    auth.createUserWithEmailAndPassword(email, password)
+      .then(cred => cred.user.updateProfile({ displayName: name }))
+      .catch(err => {
+        errEl.textContent = err.message;
+        errEl.style.display = 'block';
+      });
+  }
+
+  function doLogin(){
+    const email = document.getElementById('loginEmail').value.trim();
+    const password = document.getElementById('loginPassword').value;
+    const errEl = document.getElementById('loginError');
+    errEl.style.display = 'none';
+    auth.signInWithEmailAndPassword(email, password)
+      .catch(err => {
+        errEl.textContent = err.message;
+        errEl.style.display = 'block';
+      });
+  }
+
+  function doLogout(){
+    auth.signOut();
+  }
+
+  auth.onAuthStateChanged(user => {
+    const authBox = document.getElementById('authBox');
+    const feedBox = document.getElementById('feedBox');
+    if (user){
+      authBox.style.display = 'none';
+      feedBox.style.display = 'block';
+      document.getElementById('welcomeMsg').textContent = 'Hey, ' + (user.displayName || user.email);
+      loadFeed();
+    } else {
+      authBox.style.display = 'block';
+      feedBox.style.display = 'none';
+    }
+  });
+
+  function submitPost(){
+    const text = document.getElementById('postText').value.trim();
+    if (!text) return;
+    const user = auth.currentUser;
+    if (!user) return;
+    db.collection('posts').add({
+      text: text,
+      author: user.displayName || user.email,
+      uid: user.uid,
+      createdAt: firebase.firestore.FieldValue.serverTimestamp()
+    }).then(() => {
+      document.getElementById('postText').value = '';
+    });
+  }
+
+  function loadFeed(){
+    db.collection('posts').orderBy('createdAt', 'desc').limit(50)
+      .onSnapshot(snapshot => {
+        const feedList = document.getElementById('feedList');
+        feedList.innerHTML = '';
+        snapshot.forEach(doc => {
+          const post = doc.data();
+          const card = document.createElement('div');
+          card.style.cssText = 'background:var(--panel); border:1px solid var(--line); padding:18px; border-radius:8px; margin-bottom:12px;';
+          const p = document.createElement('p');
+          p.style.cssText = "font-family:'Newsreader',serif; font-style:italic; color:var(--cream); font-size:15px; line-height:1.5;";
+          p.textContent = post.text;
+          const span = document.createElement('span');
+          span.style.cssText = 'display:block; margin-top:10px; font-size:11px; color:var(--cream-dim); text-transform:uppercase; letter-spacing:.06em;';
+          span.textContent = '— ' + (post.author || 'Anonymous');
+          card.appendChild(p);
+          card.appendChild(span);
+          feedList.appendChild(card);
+        });
+      });
   }
 
   // Register service worker for PWA install + offline support
