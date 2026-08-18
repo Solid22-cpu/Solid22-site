@@ -247,6 +247,7 @@
 <footer>
   <div class="dots" id="dots"></div>
   <div class="hint" id="hintText">swipe, or tap the arrows</div>
+  <a href="https://solid22-shop.fourthwall.com" target="_blank" rel="noopener" id="shopLink" style="display:inline-block; margin-top:14px; font-family:'Inter',sans-serif; font-size:11px; letter-spacing:.08em; text-transform:uppercase; color:var(--gold); text-decoration:none; border-bottom:1px solid rgba(211,169,95,.4); padding-bottom:2px;">Shop the drop ↗</a>
 </footer>
 
 <div class="toast" id="toast"></div>
@@ -257,6 +258,7 @@
       subText: "one note at a time, from me to you",
       backLink: "← Back to Solid22",
       hintText: "swipe, or tap the arrows",
+      shopLink: "Shop the drop ↗",
       noteLabel: "Note",
       ofLabel: "of",
       likeLabel: "Save this note",
@@ -288,6 +290,7 @@
       subText: "una nota a la vez, de mí para ti",
       backLink: "← Volver a Solid22",
       hintText: "desliza, o toca las flechas",
+      shopLink: "Ver la tienda ↗",
       noteLabel: "Nota",
       ofLabel: "de",
       likeLabel: "Guardar esta nota",
@@ -319,6 +322,7 @@
       subText: "un mot à la fois, de moi pour toi",
       backLink: "← Retour à Solid22",
       hintText: "glisse, ou touche les flèches",
+      shopLink: "Voir la boutique ↗",
       noteLabel: "Note",
       ofLabel: "sur",
       likeLabel: "Enregistrer ce mot",
@@ -368,6 +372,7 @@
     document.getElementById('subText').textContent = translations[lang].subText;
     document.getElementById('backLink').textContent = translations[lang].backLink;
     document.getElementById('hintText').textContent = translations[lang].hintText;
+    document.getElementById('shopLink').textContent = translations[lang].shopLink;
     document.getElementById('langBtnLabel').textContent = lang.toUpperCase();
     document.getElementById('langMenu').style.display = 'none';
     document.documentElement.lang = lang;
