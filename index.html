@@ -610,7 +610,21 @@ Shop The Drop
 
   <div style="max-width:420px; margin:0 auto;">
 
-    <!-- LOGGED OUT VIEW -->
+    <!-- FEED — always visible to everyone -->
+    <div id="feedList" style="margin-bottom:30px;"></div>
+
+    <!-- POST COMPOSER — only shown when logged in -->
+    <div id="feedBox" style="display:none;">
+      <div style="display:flex; justify-content:space-between; align-items:center; margin-bottom:18px;">
+        <span style="font-size:13px; color:var(--cream-dim);" id="welcomeMsg"></span>
+        <button onclick="doLogout()" style="background:transparent; border:1px solid var(--line); color:var(--cream-dim); font-size:12px; padding:8px 14px; border-radius:6px; cursor:pointer;" data-i18n="btn_logout">Log Out</button>
+      </div>
+
+      <textarea id="postText" placeholder="Share something..." data-i18n-placeholder="ph_post" style="width:100%; min-height:80px; padding:14px; margin-bottom:10px; background:var(--panel); border:1px solid var(--line); color:var(--cream); border-radius:6px; font-family:'Newsreader',serif; font-style:italic; resize:vertical;"></textarea>
+      <button onclick="submitPost()" style="width:100%; background:var(--mauve); color:#0d0c0b; border:none; padding:14px; font-weight:600; text-transform:uppercase; letter-spacing:.04em; font-size:13px; cursor:pointer; border-radius:6px;" data-i18n="btn_post">Post</button>
+    </div>
+
+    <!-- LOGIN/SIGNUP — only shown when logged out -->
     <div id="authBox">
       <div style="display:flex; gap:8px; margin-bottom:20px;">
         <button id="tabLogin" onclick="showAuthTab('login')" style="flex:1; background:var(--mauve); color:#0d0c0b; border:none; padding:12px; font-weight:600; cursor:pointer; border-radius:6px 0 0 6px;" data-i18n="tab_login">Log In</button>
@@ -631,19 +645,6 @@ Shop The Drop
         <button onclick="doSignup()" style="width:100%; background:var(--mauve); color:#0d0c0b; border:none; padding:14px; font-weight:600; text-transform:uppercase; letter-spacing:.04em; font-size:13px; cursor:pointer; border-radius:6px;" data-i18n="btn_signup">Create Account</button>
         <p id="signupError" style="color:#e08080; font-size:12px; margin-top:10px; display:none;"></p>
       </div>
-    </div>
-
-    <!-- LOGGED IN VIEW -->
-    <div id="feedBox" style="display:none;">
-      <div style="display:flex; justify-content:space-between; align-items:center; margin-bottom:18px;">
-        <span style="font-size:13px; color:var(--cream-dim);" id="welcomeMsg"></span>
-        <button onclick="doLogout()" style="background:transparent; border:1px solid var(--line); color:var(--cream-dim); font-size:12px; padding:8px 14px; border-radius:6px; cursor:pointer;" data-i18n="btn_logout">Log Out</button>
-      </div>
-
-      <textarea id="postText" placeholder="Share something..." data-i18n-placeholder="ph_post" style="width:100%; min-height:80px; padding:14px; margin-bottom:10px; background:var(--panel); border:1px solid var(--line); color:var(--cream); border-radius:6px; font-family:'Newsreader',serif; font-style:italic; resize:vertical;"></textarea>
-      <button onclick="submitPost()" style="width:100%; background:var(--mauve); color:#0d0c0b; border:none; padding:14px; font-weight:600; text-transform:uppercase; letter-spacing:.04em; font-size:13px; cursor:pointer; border-radius:6px; margin-bottom:30px;" data-i18n="btn_post">Post</button>
-
-      <div id="feedList"></div>
     </div>
 
   </div>
@@ -1005,12 +1006,14 @@ Shop The Drop
       authBox.style.display = 'none';
       feedBox.style.display = 'block';
       document.getElementById('welcomeMsg').textContent = 'Hey, ' + (user.displayName || user.email);
-      loadFeed();
     } else {
       authBox.style.display = 'block';
       feedBox.style.display = 'none';
     }
   });
+
+  // Feed loads for everyone, logged in or not
+  loadFeed();
 
   function submitPost(){
     const text = document.getElementById('postText').value.trim();
