@@ -2,6 +2,7 @@ const CACHE_NAME = 'solid22-cache-v2';
 const urlsToCache = [
   './',
   './index.html',
+  './love.html',
   './manifest.json',
   './icon.svg'
 ];
