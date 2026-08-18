@@ -220,9 +220,19 @@
 <div id="stars"></div>
 
 <header>
+  <div style="display:flex; justify-content:center; margin-bottom:6px;">
+    <div id="langSwitch" style="position:relative;">
+      <button id="langBtn" onclick="toggleLangMenu()" style="background:transparent; border:1px solid rgba(244,236,216,.3); color:var(--paper); font-family:'Inter',sans-serif; font-size:11px; padding:7px 12px; border-radius:20px; cursor:pointer; display:flex; align-items:center; gap:6px;">🌐 <span id="langBtnLabel">EN</span></button>
+      <div id="langMenu" style="position:absolute; top:calc(100% + 8px); left:50%; transform:translateX(-50%); background:var(--night-soft); border:1px solid rgba(244,236,216,.2); border-radius:8px; overflow:hidden; display:none; min-width:120px; z-index:20;">
+        <button data-lang="en" onclick="setLanguage('en')" style="display:block; width:100%; background:transparent; border:none; color:var(--paper); font-size:13px; text-align:left; padding:10px 14px; cursor:pointer;">English</button>
+        <button data-lang="es" onclick="setLanguage('es')" style="display:block; width:100%; background:transparent; border:none; color:var(--paper); font-size:13px; text-align:left; padding:10px 14px; cursor:pointer;">Español</button>
+        <button data-lang="fr" onclick="setLanguage('fr')" style="display:block; width:100%; background:transparent; border:none; color:var(--paper); font-size:13px; text-align:left; padding:10px 14px; cursor:pointer;">Français</button>
+      </div>
+    </div>
+  </div>
   <div class="brand"><a href="./index.html" style="text-decoration:none; color:inherit;">Love<span>&nbsp;Messages</span></a></div>
-  <div class="sub">one note at a time, from me to you</div>
-  <a href="./index.html" style="display:inline-block; margin-top:10px; font-family:'Inter',sans-serif; font-size:11px; letter-spacing:.1em; text-transform:uppercase; color:var(--gold); text-decoration:none; border-bottom:1px solid rgba(211,169,95,.4); padding-bottom:2px;">← Back to Solid22</a>
+  <div class="sub" id="subText">one note at a time, from me to you</div>
+  <a href="./index.html" id="backLink" style="display:inline-block; margin-top:10px; font-family:'Inter',sans-serif; font-size:11px; letter-spacing:.1em; text-transform:uppercase; color:var(--gold); text-decoration:none; border-bottom:1px solid rgba(211,169,95,.4); padding-bottom:2px;">← Back to Solid22</a>
 </header>
 
 <main>
@@ -236,32 +246,134 @@
 
 <footer>
   <div class="dots" id="dots"></div>
-  <div class="hint">swipe, or tap the arrows</div>
+  <div class="hint" id="hintText">swipe, or tap the arrows</div>
 </footer>
 
 <div class="toast" id="toast"></div>
 
 <script>
-  const quotes = [
-    "If you think missing me is hard, then you should try missing you.",
-    "A day without you is like laundry without soap — everything feels a little less clean, a little less right.",
-    "Missing you is like taking the sun out of the sky and leaving the world dark, cold, and helpless.",
-    "It's hard to go through life without the one who makes you happy.",
-    "It's funny — every soul in this world seems to know how I feel about you. Every soul but you.",
-    "I keep the porch light on some nights, not because I think you're coming, but because some habits are really just love wearing old shoes.",
-    "You didn't complete me. You just made the parts I already had easier to carry.",
-    "Getting over you was hard. I'm still not sure I ever really did.",
-    "I don't miss who you are now. I miss who we were when neither of us had learned how to leave.",
-    "Some people search their whole life for a home. I found mine in the way you said my name.",
-    "I've loved you in seasons — loud in summer, quiet in winter — but never once out of habit.",
-    "You were never a phase. You were the whole book I keep rereading for the ending I already know.",
-    "I don't need you to come back. I just needed you to know I noticed you were gone.",
-    "Discipline built the body. Devotion is still trying to rebuild the heart.",
-    "There's a version of me that never met you, and honestly, I feel sorry for him.",
-    "I stopped waiting by the phone. I started waiting in prayer instead — same ache, better company.",
-    "You don't have to miss someone to love them. But God, it helps explain the silence.",
-    "I'm not chasing closure anymore. I'm just walking slower toward whatever's next."
-  ];
+  const translations = {
+    en: {
+      subText: "one note at a time, from me to you",
+      backLink: "← Back to Solid22",
+      hintText: "swipe, or tap the arrows",
+      noteLabel: "Note",
+      ofLabel: "of",
+      likeLabel: "Save this note",
+      shareLabel: "Share this note",
+      toastCopied: "Copied to clipboard",
+      shareSuffix: " — Love Messages",
+      quotes: [
+        "If you think missing me is hard, then you should try missing you.",
+        "A day without you is like laundry without soap — everything feels a little less clean, a little less right.",
+        "Missing you is like taking the sun out of the sky and leaving the world dark, cold, and helpless.",
+        "It's hard to go through life without the one who makes you happy.",
+        "It's funny — every soul in this world seems to know how I feel about you. Every soul but you.",
+        "I keep the porch light on some nights, not because I think you're coming, but because some habits are really just love wearing old shoes.",
+        "You didn't complete me. You just made the parts I already had easier to carry.",
+        "Getting over you was hard. I'm still not sure I ever really did.",
+        "I don't miss who you are now. I miss who we were when neither of us had learned how to leave.",
+        "Some people search their whole life for a home. I found mine in the way you said my name.",
+        "I've loved you in seasons — loud in summer, quiet in winter — but never once out of habit.",
+        "You were never a phase. You were the whole book I keep rereading for the ending I already know.",
+        "I don't need you to come back. I just needed you to know I noticed you were gone.",
+        "Discipline built the body. Devotion is still trying to rebuild the heart.",
+        "There's a version of me that never met you, and honestly, I feel sorry for him.",
+        "I stopped waiting by the phone. I started waiting in prayer instead — same ache, better company.",
+        "You don't have to miss someone to love them. But God, it helps explain the silence.",
+        "I'm not chasing closure anymore. I'm just walking slower toward whatever's next."
+      ]
+    },
+    es: {
+      subText: "una nota a la vez, de mí para ti",
+      backLink: "← Volver a Solid22",
+      hintText: "desliza, o toca las flechas",
+      noteLabel: "Nota",
+      ofLabel: "de",
+      likeLabel: "Guardar esta nota",
+      shareLabel: "Compartir esta nota",
+      toastCopied: "Copiado al portapapeles",
+      shareSuffix: " — Love Messages",
+      quotes: [
+        "Si crees que extrañarme es difícil, deberías intentar extrañarte a ti mismo.",
+        "Un día sin ti es como lavar la ropa sin jabón — todo se siente un poco menos limpio, un poco menos correcto.",
+        "Extrañarte es como quitar el sol del cielo y dejar el mundo oscuro, frío y desamparado.",
+        "Es difícil vivir sin quien te hace feliz.",
+        "Es curioso — todas las almas de este mundo parecen saber lo que siento por ti. Todas, menos tú.",
+        "Dejo la luz del porche encendida algunas noches, no porque crea que vendrás, sino porque algunos hábitos son solo amor disfrazado de costumbre.",
+        "No me completaste. Solo hiciste que las partes que ya tenía fueran más fáciles de cargar.",
+        "Superarte fue difícil. Todavía no estoy seguro de haberlo logrado.",
+        "No extraño a quien eres ahora. Extraño a quienes éramos cuando ninguno de los dos sabía cómo irse.",
+        "Algunas personas buscan un hogar toda su vida. Yo encontré el mío en la forma en que decías mi nombre.",
+        "Te he amado en temporadas — ruidoso en verano, callado en invierno — pero nunca por costumbre.",
+        "Nunca fuiste una etapa. Fuiste el libro completo que sigo releyendo por el final que ya conozco.",
+        "No necesito que regreses. Solo necesitaba que supieras que noté que te fuiste.",
+        "La disciplina construyó el cuerpo. La devoción todavía intenta reconstruir el corazón.",
+        "Hay una versión de mí que nunca te conoció, y honestamente, siento pena por él.",
+        "Dejé de esperar junto al teléfono. Empecé a esperar en oración — la misma pena, mejor compañía.",
+        "No tienes que extrañar a alguien para amarlo. Pero, Dios, ayuda a explicar el silencio.",
+        "Ya no persigo el cierre. Solo camino más despacio hacia lo que sigue."
+      ]
+    },
+    fr: {
+      subText: "un mot à la fois, de moi pour toi",
+      backLink: "← Retour à Solid22",
+      hintText: "glisse, ou touche les flèches",
+      noteLabel: "Note",
+      ofLabel: "sur",
+      likeLabel: "Enregistrer ce mot",
+      shareLabel: "Partager ce mot",
+      toastCopied: "Copié dans le presse-papiers",
+      shareSuffix: " — Love Messages",
+      quotes: [
+        "Si tu crois que c'est dur de me manquer, essaie de te manquer à toi-même.",
+        "Une journée sans toi, c'est comme la lessive sans savon — tout semble un peu moins propre, un peu moins juste.",
+        "Tu me manques comme si on enlevait le soleil du ciel, laissant le monde sombre, froid et impuissant.",
+        "C'est dur de traverser la vie sans celui qui te rend heureux.",
+        "C'est drôle — toutes les âmes de ce monde semblent savoir ce que je ressens pour toi. Toutes, sauf toi.",
+        "Je laisse la lumière du porche allumée certains soirs, pas parce que je pense que tu viens, mais parce que certaines habitudes ne sont que de l'amour déguisé en routine.",
+        "Tu ne m'as pas complété. Tu as juste rendu plus faciles à porter les parties que j'avais déjà.",
+        "T'oublier a été dur. Je ne suis toujours pas sûr d'y être vraiment arrivé.",
+        "Ce n'est pas qui tu es maintenant qui me manque. C'est qui nous étions quand aucun de nous ne savait encore partir.",
+        "Certaines personnes cherchent un foyer toute leur vie. J'ai trouvé le mien dans la façon dont tu prononçais mon nom.",
+        "Je t'ai aimé par saisons — bruyant en été, silencieux en hiver — mais jamais par habitude.",
+        "Tu n'as jamais été une phase. Tu étais le livre entier que je continue de relire pour une fin que je connais déjà.",
+        "Je n'ai pas besoin que tu reviennes. J'avais juste besoin que tu saches que j'ai remarqué ton absence.",
+        "La discipline a construit le corps. La dévotion essaie encore de reconstruire le cœur.",
+        "Il existe une version de moi qui ne t'a jamais connu, et honnêtement, j'ai de la peine pour lui.",
+        "J'ai arrêté d'attendre près du téléphone. J'ai commencé à attendre dans la prière — la même douleur, mais meilleure compagnie.",
+        "Tu n'as pas besoin de manquer à quelqu'un pour l'aimer. Mais mon Dieu, ça aide à expliquer le silence.",
+        "Je ne cours plus après une fin. Je marche juste plus lentement vers ce qui vient."
+      ]
+    }
+  };
+
+  let currentLang = 'en';
+  let quotes = translations.en.quotes;
+
+  function toggleLangMenu(){
+    const menu = document.getElementById('langMenu');
+    menu.style.display = menu.style.display === 'block' ? 'none' : 'block';
+  }
+  document.addEventListener('click', (e) => {
+    const wrap = document.getElementById('langSwitch');
+    if (wrap && !wrap.contains(e.target)) {
+      document.getElementById('langMenu').style.display = 'none';
+    }
+  });
+
+  function setLanguage(lang){
+    currentLang = lang;
+    quotes = translations[lang].quotes;
+    document.getElementById('subText').textContent = translations[lang].subText;
+    document.getElementById('backLink').textContent = translations[lang].backLink;
+    document.getElementById('hintText').textContent = translations[lang].hintText;
+    document.getElementById('langBtnLabel').textContent = lang.toUpperCase();
+    document.getElementById('langMenu').style.display = 'none';
+    document.documentElement.lang = lang;
+    current = 0;
+    render();
+  }
 
   let current = 0;
   let liked = new Set(JSON.parse(localStorage.getItem('lm_liked') || '[]'));
@@ -311,12 +423,12 @@
   }
 
   function shareCard(index){
-    const text = '"' + quotes[index] + '" — Love Messages';
+    const text = '"' + quotes[index] + '"' + translations[currentLang].shareSuffix;
     if (navigator.share){
       navigator.share({ text }).catch(() => {});
     } else if (navigator.clipboard){
       navigator.clipboard.writeText(text);
-      showToast('Copied to clipboard');
+      showToast(translations[currentLang].toastCopied);
     }
   }
 
@@ -341,7 +453,7 @@
 
       const num = document.createElement('div');
       num.className = 'quote-num';
-      num.textContent = 'Note ' + (idx + 1) + ' of ' + quotes.length;
+      num.textContent = translations[currentLang].noteLabel + ' ' + (idx + 1) + ' ' + translations[currentLang].ofLabel + ' ' + quotes.length;
 
       const top = document.createElement('div');
       top.appendChild(q);
@@ -359,13 +471,13 @@
         const likeBtn = document.createElement('button');
         likeBtn.className = 'tool-btn' + (liked.has(idx) ? ' liked' : '');
         likeBtn.innerHTML = liked.has(idx) ? '♥' : '♡';
-        likeBtn.setAttribute('aria-label', 'Save this note');
+        likeBtn.setAttribute('aria-label', translations[currentLang].likeLabel);
         likeBtn.onclick = (e) => { e.stopPropagation(); toggleLike(idx); };
 
         const shareBtn = document.createElement('button');
         shareBtn.className = 'tool-btn';
         shareBtn.innerHTML = '↗';
-        shareBtn.setAttribute('aria-label', 'Share this note');
+        shareBtn.setAttribute('aria-label', translations[currentLang].shareLabel);
         shareBtn.onclick = (e) => { e.stopPropagation(); shareCard(idx); };
 
         tools.appendChild(likeBtn);
