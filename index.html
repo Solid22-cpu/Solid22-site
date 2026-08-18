@@ -1010,6 +1010,7 @@ Shop The Drop
       authBox.style.display = 'block';
       feedBox.style.display = 'none';
     }
+    renderFeed();
   });
 
   // Feed loads for everyone, logged in or not
@@ -1030,26 +1031,138 @@ Shop The Drop
     });
   }
 
+  let latestPostsSnapshot = null;
+  let activeSubListeners = [];
+
   function loadFeed(){
     db.collection('posts').orderBy('createdAt', 'desc').limit(50)
       .onSnapshot(snapshot => {
-        const feedList = document.getElementById('feedList');
-        feedList.innerHTML = '';
-        snapshot.forEach(doc => {
-          const post = doc.data();
-          const card = document.createElement('div');
-          card.style.cssText = 'background:var(--panel); border:1px solid var(--line); padding:18px; border-radius:8px; margin-bottom:12px;';
-          const p = document.createElement('p');
-          p.style.cssText = "font-family:'Newsreader',serif; font-style:italic; color:var(--cream); font-size:15px; line-height:1.5;";
-          p.textContent = post.text;
-          const span = document.createElement('span');
-          span.style.cssText = 'display:block; margin-top:10px; font-size:11px; color:var(--cream-dim); text-transform:uppercase; letter-spacing:.06em;';
-          span.textContent = '— ' + (post.author || 'Anonymous');
-          card.appendChild(p);
-          card.appendChild(span);
-          feedList.appendChild(card);
-        });
+        latestPostsSnapshot = snapshot;
+        renderFeed();
       });
+  }
+
+  function renderFeed(){
+    if (!latestPostsSnapshot) return;
+
+    // Clean up old like/comment listeners before rebuilding
+    activeSubListeners.forEach(unsub => unsub());
+    activeSubListeners = [];
+
+    const feedList = document.getElementById('feedList');
+    feedList.innerHTML = '';
+
+    latestPostsSnapshot.forEach(doc => {
+      const post = doc.data();
+      const postId = doc.id;
+
+      const card = document.createElement('div');
+      card.style.cssText = 'background:var(--panel); border:1px solid var(--line); padding:18px; border-radius:8px; margin-bottom:12px;';
+
+      const p = document.createElement('p');
+      p.style.cssText = "font-family:'Newsreader',serif; font-style:italic; color:var(--cream); font-size:15px; line-height:1.5;";
+      p.textContent = post.text;
+
+      const span = document.createElement('span');
+      span.style.cssText = 'display:block; margin-top:10px; font-size:11px; color:var(--cream-dim); text-transform:uppercase; letter-spacing:.06em;';
+      span.textContent = '— ' + (post.author || 'Anonymous');
+
+      // Like button
+      const likeRow = document.createElement('div');
+      likeRow.style.cssText = 'display:flex; align-items:center; gap:10px; margin-top:14px;';
+      const likeBtn = document.createElement('button');
+      likeBtn.textContent = '👍 0';
+      likeBtn.style.cssText = 'background:transparent; border:1px solid var(--line); color:var(--cream-dim); padding:6px 12px; border-radius:6px; font-size:12px; cursor:pointer;';
+      likeBtn.onclick = () => toggleLike(postId);
+      likeRow.appendChild(likeBtn);
+
+      card.appendChild(p);
+      card.appendChild(span);
+      card.appendChild(likeRow);
+
+      // Comments
+      const commentsWrap = document.createElement('div');
+      commentsWrap.style.cssText = 'margin-top:14px; padding-top:14px; border-top:1px solid var(--line);';
+      const commentsList = document.createElement('div');
+      commentsList.style.cssText = 'margin-bottom:10px;';
+      commentsWrap.appendChild(commentsList);
+
+      if (auth.currentUser){
+        const commentRow = document.createElement('div');
+        commentRow.style.cssText = 'display:flex; gap:8px;';
+        const commentInput = document.createElement('input');
+        commentInput.type = 'text';
+        commentInput.placeholder = 'Add a comment...';
+        commentInput.style.cssText = 'flex:1; padding:10px; background:var(--bg); border:1px solid var(--line); color:var(--cream); border-radius:6px; font-family:\'Inter\',sans-serif; font-size:12px;';
+        const commentBtn = document.createElement('button');
+        commentBtn.textContent = 'Reply';
+        commentBtn.style.cssText = 'background:var(--mauve); color:#0d0c0b; border:none; padding:10px 14px; border-radius:6px; font-size:12px; font-weight:600; cursor:pointer;';
+        commentBtn.onclick = () => {
+          const text = commentInput.value.trim();
+          if (!text) return;
+          addComment(postId, text);
+          commentInput.value = '';
+        };
+        commentRow.appendChild(commentInput);
+        commentRow.appendChild(commentBtn);
+        commentsWrap.appendChild(commentRow);
+      }
+
+      card.appendChild(commentsWrap);
+      feedList.appendChild(card);
+
+      // Live like count + highlight if current user liked
+      const unsubLikes = db.collection('posts').doc(postId).collection('likes')
+        .onSnapshot(likeSnap => {
+          likeBtn.textContent = '👍 ' + likeSnap.size;
+          const likedByMe = auth.currentUser && likeSnap.docs.some(d => d.id === auth.currentUser.uid);
+          likeBtn.style.color = likedByMe ? 'var(--mauve)' : 'var(--cream-dim)';
+          likeBtn.style.borderColor = likedByMe ? 'var(--mauve)' : 'var(--line)';
+        });
+      activeSubListeners.push(unsubLikes);
+
+      // Live comments
+      const unsubComments = db.collection('posts').doc(postId).collection('comments')
+        .orderBy('createdAt', 'asc')
+        .onSnapshot(cSnap => {
+          commentsList.innerHTML = '';
+          cSnap.forEach(cdoc => {
+            const c = cdoc.data();
+            const cEl = document.createElement('div');
+            cEl.style.cssText = 'font-size:12px; color:var(--cream-dim); margin-bottom:6px; line-height:1.4;';
+            cEl.textContent = (c.author || 'Anonymous') + ': ' + c.text;
+            commentsList.appendChild(cEl);
+          });
+        });
+      activeSubListeners.push(unsubComments);
+    });
+  }
+
+  function toggleLike(postId){
+    const user = auth.currentUser;
+    if (!user){
+      alert('Log in to like a post.');
+      return;
+    }
+    const likeRef = db.collection('posts').doc(postId).collection('likes').doc(user.uid);
+    likeRef.get().then(doc => {
+      if (doc.exists){
+        likeRef.delete();
+      } else {
+        likeRef.set({ createdAt: firebase.firestore.FieldValue.serverTimestamp() });
+      }
+    });
+  }
+
+  function addComment(postId, text){
+    const user = auth.currentUser;
+    if (!user) return;
+    db.collection('posts').doc(postId).collection('comments').add({
+      text: text,
+      author: user.displayName || user.email,
+      uid: user.uid,
+      createdAt: firebase.firestore.FieldValue.serverTimestamp()
+    });
   }
 
   // Register service worker for PWA install + offline support
