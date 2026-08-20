@@ -274,6 +274,47 @@
     font-size:15px;
     line-height:1.6;
 }
+  /* WATCH / VIDEO SHOWCASE */
+.watch-grid{
+    max-width:960px;
+    margin:0 auto;
+    display:grid;
+    grid-template-columns:repeat(3,1fr);
+    gap:24px;
+}
+.watch-item{
+    max-width:325px;
+    width:100%;
+    margin:0 auto;
+    background:var(--panel);
+    border:1px solid var(--line);
+    border-radius:8px;
+    overflow:hidden;
+    display:flex;
+    flex-direction:column;
+}
+.watch-item .watch-frame{
+    position:relative;
+    width:100%;
+    aspect-ratio:9/16;
+    background:var(--bg-soft);
+}
+.watch-item .watch-frame iframe{
+    position:absolute; inset:0;
+    width:100%; height:100%;
+    border:0;
+}
+.watch-item .watch-label{
+    padding:12px 14px;
+    font-size:11px;
+    letter-spacing:.1em;
+    text-transform:uppercase;
+    color:var(--cream-dim);
+    text-align:center;
+}
+  @media (max-width:700px){
+.watch-grid{grid-template-columns:1fr; max-width:325px;}
+}
   /* DROP / MERCH */
 .drop{background:var(--bg-soft);}
 .drop-grid{
@@ -565,6 +606,38 @@
   </div>
 </section>
 
+<section id="watch">
+  <div class="section-head">
+    <div class="eyebrow" data-i18n="watch_eyebrow">As Seen On</div>
+    <h2 data-i18n="watch_h2">Watch The Story</h2>
+  </div>
+
+  <div class="watch-grid">
+    <div class="watch-item">
+      <div class="watch-frame">
+        <blockquote class="tiktok-embed" cite="https://vt.tiktok.com/ZSVAp8DMq/" data-video-id="" style="max-width: 325px; min-width: 100%; margin:0;">
+          <section></section>
+        </blockquote>
+      </div>
+      <div class="watch-label">TikTok</div>
+    </div>
+
+    <div class="watch-item">
+      <div class="watch-frame">
+        <blockquote class="instagram-media" data-instgrm-permalink="https://www.instagram.com/reel/DZSNNO8xfng/" data-instgrm-version="14" style="margin:0; width:100%;"></blockquote>
+      </div>
+      <div class="watch-label">Instagram</div>
+    </div>
+
+    <div class="watch-item">
+      <div class="watch-frame">
+        <iframe src="https://www.youtube.com/embed/v3z_NWWYSD4" title="Solid22 YouTube Short" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" allowfullscreen loading="lazy"></iframe>
+      </div>
+      <div class="watch-label">YouTube</div>
+    </div>
+  </div>
+</section>
+
 <section class="drop" id="drop">
   <div class="section-head">
     <div class="eyebrow" data-i18n="drop_eyebrow">Out Now</div>
@@ -729,6 +802,7 @@ Shop The Drop
       hero_line1: "Discipline", hero_line2: "Devotion",
       hero_sub: "Built in a room with a barbell, some laundry, and a lot on my mind. Merch is here — for the ones who feel deeply and still show up.",
       stat_ig: "IG Followers", stat_yt: "YT Views", stat_30d: "Views / 30 days", stat_posts: "Posts & Counting", stat_posts_dynamic: "Subscribers",
+      watch_eyebrow: "As Seen On", watch_h2: "Watch The Story",
       drop_eyebrow: "Out Now", drop_h2: "The First Drop",
       drop_p: "Apparel built the same way the posts are — plain, honest, a little heavy. Shop it now before it's gone.",
       drop_tag: "First Drop",
@@ -780,6 +854,7 @@ Shop The Drop
       hero_line1: "Disciplina", hero_line2: "Devoción",
       hero_sub: "Construido en un cuarto con una barra, algo de ropa por lavar, y muchas cosas en mente. La mercancía ya está disponible — para quienes sienten profundo y aun así siguen adelante.",
       stat_ig: "Seguidores IG", stat_yt: "Vistas YT", stat_30d: "Vistas / 30 días", stat_posts: "Publicaciones y contando", stat_posts_dynamic: "Suscriptores",
+      watch_eyebrow: "Como Se Vio En", watch_h2: "Mira La Historia",
       drop_eyebrow: "Ya Disponible", drop_h2: "El Primer Lanzamiento",
       drop_p: "Ropa hecha igual que los posts — simple, honesta, un poco pesada. Cómprala ahora antes de que se agote.",
       drop_tag: "Primer Lanzamiento",
@@ -831,6 +906,7 @@ Shop The Drop
       hero_line1: "Discipline", hero_line2: "Dévotion",
       hero_sub: "Construit dans une chambre avec une barre, du linge à faire, et beaucoup en tête. Les articles sont disponibles dès maintenant — pour ceux qui ressentent profondément et se montrent quand même.",
       stat_ig: "Abonnés IG", stat_yt: "Vues YT", stat_30d: "Vues / 30 jours", stat_posts: "Publications et ça continue", stat_posts_dynamic: "Abonnés YouTube",
+      watch_eyebrow: "Vu Sur", watch_h2: "Regarde L'Histoire",
       drop_eyebrow: "Disponible Maintenant", drop_h2: "La Première Sortie",
       drop_p: "Des vêtements faits comme les publications — simples, honnêtes, un peu lourds. Achetez maintenant avant rupture de stock.",
       drop_tag: "Première Sortie",
@@ -1236,5 +1312,9 @@ Shop The Drop
   applyLanguage(currentLang);
   loadYouTubeStats();
 </script>
+
+<!-- Official embed widget scripts for the Watch section -->
+<script async src="https://www.tiktok.com/embed.js"></script>
+<script async src="//www.instagram.com/embed.js"></script>
 </body>
 </html>
