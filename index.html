@@ -1167,8 +1167,9 @@ Shop The Drop
       likeRow.style.cssText = 'display:flex; align-items:center; gap:10px; margin-top:14px;';
       const likeBtn = document.createElement('button');
       likeBtn.textContent = '👍 0';
+      likeBtn.className = 'like-btn';
+      likeBtn.setAttribute('data-post-id', postId);
       likeBtn.style.cssText = 'background:transparent; border:1px solid var(--line); color:var(--cream-dim); padding:6px 12px; border-radius:6px; font-size:12px; cursor:pointer;';
-      likeBtn.onclick = () => toggleLike(postId);
       likeRow.appendChild(likeBtn);
 
       card.appendChild(p);
@@ -1246,8 +1247,25 @@ Shop The Drop
       } else {
         likeRef.set({ createdAt: firebase.firestore.FieldValue.serverTimestamp() });
       }
+    }).catch(err => {
+      console.error('Like failed:', err);
+      alert('Could not save your like. Please try again.');
     });
   }
+
+  // Event delegation: one listener on the feed container catches clicks on
+  // any like button, even after the feed re-renders. This avoids the bug
+  // where a freshly-rebound onclick could miss a tap during a re-render.
+  document.getElementById('feedList').addEventListener('click', function(e){
+    const btn = e.target.closest('.like-btn');
+    if (!btn) return;
+    // Instant visual feedback so the tap is never silent, even before
+    // the Firestore round-trip completes.
+    btn.style.transform = 'scale(0.92)';
+    setTimeout(() => { btn.style.transform = ''; }, 120);
+    const postId = btn.getAttribute('data-post-id');
+    toggleLike(postId);
+  });
 
   function addComment(postId, text){
     const user = auth.currentUser;
