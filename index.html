@@ -695,6 +695,9 @@ Shop The Drop
       <span>Aug 20, 2026</span>
     </div>
   </div>
+  <div style="text-align:center; margin-top:32px;">
+    <button id="wallSeeMoreBtn" style="display:none; background:transparent; border:1px solid var(--line); color:var(--cream-dim); padding:12px 28px; border-radius:30px; font-size:12px; letter-spacing:.08em; text-transform:uppercase; cursor:pointer; transition:border-color .2s ease, color .2s ease;">See More</button>
+  </div>
 </section>
 
 <section id="community" style="background:var(--bg-soft);">
@@ -1319,8 +1322,33 @@ Shop The Drop
     }
   }
 
+  // ---------- QUOTE WALL "SEE MORE" ----------
+  function setupWallSeeMore(){
+    const VISIBLE_COUNT = 7;
+    const cards = Array.from(document.querySelectorAll('.wall .quote-card'));
+    const btn = document.getElementById('wallSeeMoreBtn');
+    if (!btn || cards.length <= VISIBLE_COUNT) return;
+
+    cards.slice(VISIBLE_COUNT).forEach(card => { card.style.display = 'none'; });
+    btn.style.display = 'inline-block';
+    btn.textContent = 'See More';
+
+    let expanded = false;
+    btn.onclick = () => {
+      expanded = !expanded;
+      cards.slice(VISIBLE_COUNT).forEach(card => {
+        card.style.display = expanded ? '' : 'none';
+      });
+      btn.textContent = expanded ? 'See Less' : 'See More';
+      if (!expanded){
+        document.getElementById('words').scrollIntoView({ behavior: 'smooth', block: 'start' });
+      }
+    };
+  }
+
   // Init
   applyLanguage(currentLang);
+  setupWallSeeMore();
   loadYouTubeStats();
 </script>
 
