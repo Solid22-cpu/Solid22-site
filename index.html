@@ -20,9 +20,6 @@
 <meta name="twitter:image" content="https://solid22-cpu.github.io/Solid22-site/icon.svg">
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link href="https://fonts.googleapis.com/css2?family=Anton&family=Newsreader:ital,opsz,wght@0,6..72,400;0,6..72,500;1,6..72,400&family=Inter:wght@400;500;600&display=swap" rel="stylesheet">
-<script src="https://www.gstatic.com/firebasejs/10.13.2/firebase-app-compat.js"></script>
-<script src="https://www.gstatic.com/firebasejs/10.13.2/firebase-auth-compat.js"></script>
-<script src="https://www.gstatic.com/firebasejs/10.13.2/firebase-firestore-compat.js"></script>
 <script async type='text/javascript' src='https://static.klaviyo.com/onsite/js/XHmv59/klaviyo.js?company_id=XHmv59'></script>
 <script type="text/javascript">
 //Initialize Klaviyo object on page load
@@ -574,7 +571,6 @@
     <a href="#drop" data-i18n="nav_drop">The Drop</a>
     <a href="#words" data-i18n="nav_words">Words</a>
     <a href="#follow" data-i18n="nav_follow">Follow</a>
-    <a href="#community" data-i18n="nav_community">Community</a>
     <a href="./love.html" data-i18n="nav_love">Love Notes</a>
     <a href="https://solid22-cpu.github.io/The-Quiet-Room/" target="_blank" rel="noopener" data-i18n="nav_quiet">The Quiet Room</a>
     <div id="langSwitch">
@@ -700,55 +696,6 @@ Shop The Drop
   </div>
 </section>
 
-<section id="community" style="background:var(--bg-soft);">
-  <div class="section-head">
-    <div class="eyebrow" data-i18n="community_eyebrow">Members Only</div>
-    <h2 data-i18n="community_h2">The Community</h2>
-    <p data-i18n="community_p">Share your own words. See what others are carrying too.</p>
-  </div>
-
-  <div style="max-width:420px; margin:0 auto;">
-
-    <!-- FEED — always visible to everyone -->
-    <div id="feedList" style="margin-bottom:30px;"></div>
-
-    <!-- POST COMPOSER — only shown when logged in -->
-    <div id="feedBox" style="display:none;">
-      <div style="display:flex; justify-content:space-between; align-items:center; margin-bottom:18px;">
-        <span style="font-size:13px; color:var(--cream-dim);" id="welcomeMsg"></span>
-        <button onclick="doLogout()" style="background:transparent; border:1px solid var(--line); color:var(--cream-dim); font-size:12px; padding:8px 14px; border-radius:6px; cursor:pointer;" data-i18n="btn_logout">Log Out</button>
-      </div>
-
-      <textarea id="postText" placeholder="Share something..." data-i18n-placeholder="ph_post" style="width:100%; min-height:80px; padding:14px; margin-bottom:10px; background:var(--panel); border:1px solid var(--line); color:var(--cream); border-radius:6px; font-family:'Newsreader',serif; font-style:italic; resize:vertical;"></textarea>
-      <button onclick="submitPost()" style="width:100%; background:var(--mauve); color:#0d0c0b; border:none; padding:14px; font-weight:600; text-transform:uppercase; letter-spacing:.04em; font-size:13px; cursor:pointer; border-radius:6px;" data-i18n="btn_post">Post</button>
-    </div>
-
-    <!-- LOGIN/SIGNUP — only shown when logged out -->
-    <div id="authBox">
-      <div style="display:flex; gap:8px; margin-bottom:20px;">
-        <button id="tabLogin" onclick="showAuthTab('login')" style="flex:1; background:var(--mauve); color:#0d0c0b; border:none; padding:12px; font-weight:600; cursor:pointer; border-radius:6px 0 0 6px;" data-i18n="tab_login">Log In</button>
-        <button id="tabSignup" onclick="showAuthTab('signup')" style="flex:1; background:var(--panel); color:var(--cream); border:none; padding:12px; font-weight:600; cursor:pointer; border-radius:0 6px 6px 0;" data-i18n="tab_signup">Sign Up</button>
-      </div>
-
-      <div id="loginForm">
-        <input type="email" id="loginEmail" placeholder="Email" data-i18n-placeholder="ph_email" style="width:100%; padding:14px; margin-bottom:10px; background:var(--panel); border:1px solid var(--line); color:var(--cream); border-radius:6px; font-family:'Inter',sans-serif;">
-        <input type="password" id="loginPassword" placeholder="Password" data-i18n-placeholder="ph_password" style="width:100%; padding:14px; margin-bottom:14px; background:var(--panel); border:1px solid var(--line); color:var(--cream); border-radius:6px; font-family:'Inter',sans-serif;">
-        <button onclick="doLogin()" style="width:100%; background:var(--mauve); color:#0d0c0b; border:none; padding:14px; font-weight:600; text-transform:uppercase; letter-spacing:.04em; font-size:13px; cursor:pointer; border-radius:6px;" data-i18n="btn_login">Log In</button>
-        <p id="loginError" style="color:#e08080; font-size:12px; margin-top:10px; display:none;"></p>
-      </div>
-
-      <div id="signupForm" style="display:none;">
-        <input type="text" id="signupName" placeholder="Display name" data-i18n-placeholder="ph_name" style="width:100%; padding:14px; margin-bottom:10px; background:var(--panel); border:1px solid var(--line); color:var(--cream); border-radius:6px; font-family:'Inter',sans-serif;">
-        <input type="email" id="signupEmail" placeholder="Email" data-i18n-placeholder="ph_email" style="width:100%; padding:14px; margin-bottom:10px; background:var(--panel); border:1px solid var(--line); color:var(--cream); border-radius:6px; font-family:'Inter',sans-serif;">
-        <input type="password" id="signupPassword" placeholder="Password (6+ characters)" data-i18n-placeholder="ph_password_new" style="width:100%; padding:14px; margin-bottom:14px; background:var(--panel); border:1px solid var(--line); color:var(--cream); border-radius:6px; font-family:'Inter',sans-serif;">
-        <button onclick="doSignup()" style="width:100%; background:var(--mauve); color:#0d0c0b; border:none; padding:14px; font-weight:600; text-transform:uppercase; letter-spacing:.04em; font-size:13px; cursor:pointer; border-radius:6px;" data-i18n="btn_signup">Create Account</button>
-        <p id="signupError" style="color:#e08080; font-size:12px; margin-top:10px; display:none;"></p>
-      </div>
-    </div>
-
-  </div>
-</section>
-
 <footer id="follow">
   <div class="logo">SOLID<span>22</span></div>
   <div class="social-row">
@@ -788,9 +735,7 @@ Shop The Drop
   // ---------- TRANSLATIONS ----------
   const translations = {
     en: {
-      nav_drop: "The Drop", nav_words: "Words", nav_follow: "Follow", nav_community: "Community", nav_love: "Love Notes", nav_quiet: "The Quiet Room",
-      community_eyebrow: "Members Only", community_h2: "The Community",
-      community_p: "Share your own words. See what others are carrying too.",
+      nav_drop: "The Drop", nav_words: "Words", nav_follow: "Follow", nav_love: "Love Notes", nav_quiet: "The Quiet Room",
       tab_login: "Log In", tab_signup: "Sign Up",
       ph_email: "Email", ph_password: "Password", ph_password_new: "Password (6+ characters)", ph_name: "Display name", ph_post: "Share something...",
       btn_login: "Log In", btn_signup: "Create Account", btn_logout: "Log Out", btn_post: "Post",
@@ -840,9 +785,7 @@ Shop The Drop
       ]
     },
     es: {
-      nav_drop: "El Lanzamiento", nav_words: "Palabras", nav_follow: "Síguenos", nav_community: "Comunidad", nav_love: "Notas de Amor", nav_quiet: "El Cuarto Silencioso",
-      community_eyebrow: "Solo Miembros", community_h2: "La Comunidad",
-      community_p: "Comparte tus propias palabras. Mira lo que otros también llevan por dentro.",
+      nav_drop: "El Lanzamiento", nav_words: "Palabras", nav_follow: "Síguenos", nav_love: "Notas de Amor", nav_quiet: "El Cuarto Silencioso",
       tab_login: "Iniciar Sesión", tab_signup: "Registrarse",
       ph_email: "Correo", ph_password: "Contraseña", ph_password_new: "Contraseña (6+ caracteres)", ph_name: "Nombre a mostrar", ph_post: "Comparte algo...",
       btn_login: "Iniciar Sesión", btn_signup: "Crear Cuenta", btn_logout: "Cerrar Sesión", btn_post: "Publicar",
@@ -892,9 +835,7 @@ Shop The Drop
       ]
     },
     fr: {
-      nav_drop: "La Sortie", nav_words: "Mots", nav_follow: "Suivre", nav_community: "Communauté", nav_love: "Notes d'Amour", nav_quiet: "La Salle Silencieuse",
-      community_eyebrow: "Membres Uniquement", community_h2: "La Communauté",
-      community_p: "Partage tes propres mots. Découvre ce que les autres portent aussi.",
+      nav_drop: "La Sortie", nav_words: "Mots", nav_follow: "Suivre", nav_love: "Notes d'Amour", nav_quiet: "La Salle Silencieuse",
       tab_login: "Connexion", tab_signup: "S'inscrire",
       ph_email: "E-mail", ph_password: "Mot de passe", ph_password_new: "Mot de passe (6+ caractères)", ph_name: "Nom affiché", ph_post: "Partage quelque chose...",
       btn_login: "Connexion", btn_signup: "Créer un compte", btn_logout: "Déconnexion", btn_post: "Publier",
@@ -1035,254 +976,6 @@ Shop The Drop
     body.appendChild(botMsg);
 
     body.scrollTop = body.scrollHeight;
-  }
-
-  // ---------- COMMUNITY FEED (Firebase) ----------
-  const firebaseConfig = {
-    apiKey: "AIzaSyCXKjnxnw4SeLsLsFWmqip-UB-Vadk0244",
-    authDomain: "solid22-community.firebaseapp.com",
-    projectId: "solid22-community",
-    storageBucket: "solid22-community.firebasestorage.app",
-    messagingSenderId: "622993559621",
-    appId: "1:622993559621:web:8f5f5929d95d146d29d32c"
-  };
-  firebase.initializeApp(firebaseConfig);
-  const auth = firebase.auth();
-  const db = firebase.firestore();
-
-  function showAuthTab(tab){
-    const login = document.getElementById('loginForm');
-    const signup = document.getElementById('signupForm');
-    const tabLogin = document.getElementById('tabLogin');
-    const tabSignup = document.getElementById('tabSignup');
-    if (tab === 'login'){
-      login.style.display = 'block'; signup.style.display = 'none';
-      tabLogin.style.background = 'var(--mauve)'; tabLogin.style.color = '#0d0c0b';
-      tabSignup.style.background = 'var(--panel)'; tabSignup.style.color = 'var(--cream)';
-    } else {
-      login.style.display = 'none'; signup.style.display = 'block';
-      tabSignup.style.background = 'var(--mauve)'; tabSignup.style.color = '#0d0c0b';
-      tabLogin.style.background = 'var(--panel)'; tabLogin.style.color = 'var(--cream)';
-    }
-  }
-
-  function doSignup(){
-    const name = document.getElementById('signupName').value.trim();
-    const email = document.getElementById('signupEmail').value.trim();
-    const password = document.getElementById('signupPassword').value;
-    const errEl = document.getElementById('signupError');
-    errEl.style.display = 'none';
-    if (!name || !email || !password){
-      errEl.textContent = 'Please fill in all fields.';
-      errEl.style.display = 'block';
-      return;
-    }
-    auth.createUserWithEmailAndPassword(email, password)
-      .then(cred => cred.user.updateProfile({ displayName: name }))
-      .catch(err => {
-        errEl.textContent = err.message;
-        errEl.style.display = 'block';
-      });
-  }
-
-  function doLogin(){
-    const email = document.getElementById('loginEmail').value.trim();
-    const password = document.getElementById('loginPassword').value;
-    const errEl = document.getElementById('loginError');
-    errEl.style.display = 'none';
-    auth.signInWithEmailAndPassword(email, password)
-      .catch(err => {
-        errEl.textContent = err.message;
-        errEl.style.display = 'block';
-      });
-  }
-
-  function doLogout(){
-    auth.signOut();
-  }
-
-  auth.onAuthStateChanged(user => {
-    const authBox = document.getElementById('authBox');
-    const feedBox = document.getElementById('feedBox');
-    if (user){
-      authBox.style.display = 'none';
-      feedBox.style.display = 'block';
-      document.getElementById('welcomeMsg').textContent = 'Hey, ' + (user.displayName || user.email);
-    } else {
-      authBox.style.display = 'block';
-      feedBox.style.display = 'none';
-    }
-    renderFeed();
-  });
-
-  // Feed loads for everyone, logged in or not
-  loadFeed();
-
-  function submitPost(){
-    const text = document.getElementById('postText').value.trim();
-    if (!text) return;
-    const user = auth.currentUser;
-    if (!user) return;
-    db.collection('posts').add({
-      text: text,
-      author: user.displayName || user.email,
-      uid: user.uid,
-      createdAt: firebase.firestore.FieldValue.serverTimestamp()
-    }).then(() => {
-      document.getElementById('postText').value = '';
-    });
-  }
-
-  let latestPostsSnapshot = null;
-  let activeSubListeners = [];
-
-  function loadFeed(){
-    db.collection('posts').orderBy('createdAt', 'desc').limit(50)
-      .onSnapshot(snapshot => {
-        latestPostsSnapshot = snapshot;
-        renderFeed();
-      });
-  }
-
-  function renderFeed(){
-    if (!latestPostsSnapshot) return;
-
-    // Clean up old like/comment listeners before rebuilding
-    activeSubListeners.forEach(unsub => unsub());
-    activeSubListeners = [];
-
-    const feedList = document.getElementById('feedList');
-    feedList.innerHTML = '';
-
-    latestPostsSnapshot.forEach(doc => {
-      const post = doc.data();
-      const postId = doc.id;
-
-      const card = document.createElement('div');
-      card.style.cssText = 'background:var(--panel); border:1px solid var(--line); padding:18px; border-radius:8px; margin-bottom:12px;';
-
-      const p = document.createElement('p');
-      p.style.cssText = "font-family:'Newsreader',serif; font-style:italic; color:var(--cream); font-size:15px; line-height:1.5;";
-      p.textContent = post.text;
-
-      const span = document.createElement('span');
-      span.style.cssText = 'display:block; margin-top:10px; font-size:11px; color:var(--cream-dim); text-transform:uppercase; letter-spacing:.06em;';
-      span.textContent = '— ' + (post.author || 'Anonymous');
-
-      // Like button
-      const likeRow = document.createElement('div');
-      likeRow.style.cssText = 'display:flex; align-items:center; gap:10px; margin-top:14px;';
-      const likeBtn = document.createElement('button');
-      likeBtn.textContent = '👍 0';
-      likeBtn.className = 'like-btn';
-      likeBtn.setAttribute('data-post-id', postId);
-      likeBtn.style.cssText = 'background:transparent; border:1px solid var(--line); color:var(--cream-dim); padding:6px 12px; border-radius:6px; font-size:12px; cursor:pointer;';
-      likeRow.appendChild(likeBtn);
-
-      card.appendChild(p);
-      card.appendChild(span);
-      card.appendChild(likeRow);
-
-      // Comments
-      const commentsWrap = document.createElement('div');
-      commentsWrap.style.cssText = 'margin-top:14px; padding-top:14px; border-top:1px solid var(--line);';
-      const commentsList = document.createElement('div');
-      commentsList.style.cssText = 'margin-bottom:10px;';
-      commentsWrap.appendChild(commentsList);
-
-      if (auth.currentUser){
-        const commentRow = document.createElement('div');
-        commentRow.style.cssText = 'display:flex; gap:8px;';
-        const commentInput = document.createElement('input');
-        commentInput.type = 'text';
-        commentInput.placeholder = 'Add a comment...';
-        commentInput.style.cssText = 'flex:1; padding:10px; background:var(--bg); border:1px solid var(--line); color:var(--cream); border-radius:6px; font-family:\'Inter\',sans-serif; font-size:12px;';
-        const commentBtn = document.createElement('button');
-        commentBtn.textContent = 'Reply';
-        commentBtn.style.cssText = 'background:var(--mauve); color:#0d0c0b; border:none; padding:10px 14px; border-radius:6px; font-size:12px; font-weight:600; cursor:pointer;';
-        commentBtn.onclick = () => {
-          const text = commentInput.value.trim();
-          if (!text) return;
-          addComment(postId, text);
-          commentInput.value = '';
-        };
-        commentRow.appendChild(commentInput);
-        commentRow.appendChild(commentBtn);
-        commentsWrap.appendChild(commentRow);
-      }
-
-      card.appendChild(commentsWrap);
-      feedList.appendChild(card);
-
-      // Live like count + highlight if current user liked
-      const unsubLikes = db.collection('posts').doc(postId).collection('likes')
-        .onSnapshot(likeSnap => {
-          likeBtn.textContent = '👍 ' + likeSnap.size;
-          const likedByMe = auth.currentUser && likeSnap.docs.some(d => d.id === auth.currentUser.uid);
-          likeBtn.style.color = likedByMe ? 'var(--mauve)' : 'var(--cream-dim)';
-          likeBtn.style.borderColor = likedByMe ? 'var(--mauve)' : 'var(--line)';
-        });
-      activeSubListeners.push(unsubLikes);
-
-      // Live comments
-      const unsubComments = db.collection('posts').doc(postId).collection('comments')
-        .orderBy('createdAt', 'asc')
-        .onSnapshot(cSnap => {
-          commentsList.innerHTML = '';
-          cSnap.forEach(cdoc => {
-            const c = cdoc.data();
-            const cEl = document.createElement('div');
-            cEl.style.cssText = 'font-size:12px; color:var(--cream-dim); margin-bottom:6px; line-height:1.4;';
-            cEl.textContent = (c.author || 'Anonymous') + ': ' + c.text;
-            commentsList.appendChild(cEl);
-          });
-        });
-      activeSubListeners.push(unsubComments);
-    });
-  }
-
-  function toggleLike(postId){
-    const user = auth.currentUser;
-    if (!user){
-      alert('Log in to like a post.');
-      return;
-    }
-    const likeRef = db.collection('posts').doc(postId).collection('likes').doc(user.uid);
-    likeRef.get().then(doc => {
-      if (doc.exists){
-        likeRef.delete();
-      } else {
-        likeRef.set({ createdAt: firebase.firestore.FieldValue.serverTimestamp() });
-      }
-    }).catch(err => {
-      console.error('Like failed:', err);
-      alert('Could not save your like. Please try again.');
-    });
-  }
-
-  // Event delegation: one listener on the feed container catches clicks on
-  // any like button, even after the feed re-renders. This avoids the bug
-  // where a freshly-rebound onclick could miss a tap during a re-render.
-  document.getElementById('feedList').addEventListener('click', function(e){
-    const btn = e.target.closest('.like-btn');
-    if (!btn) return;
-    // Instant visual feedback so the tap is never silent, even before
-    // the Firestore round-trip completes.
-    btn.style.transform = 'scale(0.92)';
-    setTimeout(() => { btn.style.transform = ''; }, 120);
-    const postId = btn.getAttribute('data-post-id');
-    toggleLike(postId);
-  });
-
-  function addComment(postId, text){
-    const user = auth.currentUser;
-    if (!user) return;
-    db.collection('posts').doc(postId).collection('comments').add({
-      text: text,
-      author: user.displayName || user.email,
-      uid: user.uid,
-      createdAt: firebase.firestore.FieldValue.serverTimestamp()
-    });
   }
 
   // Register service worker for PWA install + offline support
