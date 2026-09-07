@@ -568,7 +568,6 @@
 <header>
   <div class="logo">SOLID<span>22</span></div>
   <nav>
-    <a href="#drop" data-i18n="nav_drop">The Drop</a>
     <a href="#templates" data-i18n="nav_templates">Templates</a>
     <a href="#words" data-i18n="nav_words">Words</a>
     <a href="#follow" data-i18n="nav_follow">Follow</a>
@@ -625,38 +624,6 @@
       </div>
       <div class="watch-label">Instagram</div>
     </div>
-  </div>
-</section>
-
-<section class="drop" id="drop">
-  <div class="section-head">
-    <div class="eyebrow" data-i18n="drop_eyebrow">Out Now</div>
-    <h2 data-i18n="drop_h2">The First Drop</h2>
-    <p data-i18n="drop_p">Apparel built the same way the posts are — plain, honest, a little heavy. Shop it now before it's gone.</p>
-  </div>
-
-  <div class="drop-grid" style="max-width:640px; margin:0 auto; grid-template-columns:repeat(2,1fr);">
-    <a class="drop-item" href="https://solid22-shop.fourthwall.com/products/missing-you-text-graphic-tee" target="_blank" rel="noopener">
-      <img src="./tee.png" alt="Missing You Tee" style="position:absolute; inset:0; width:100%; height:100%; object-fit:cover; z-index:0;">
-      <span class="tag" data-i18n="drop_tag">First Drop</span>
-      <h3 data-i18n="item1_title">Missing You Tee</h3>
-      <p data-i18n="item1_desc">Boxy fit, back print — "If you think missing me is hard, then you should try missing you."</p>
-    </a>
-    <a class="drop-item" href="https://solid22-shop.fourthwall.com/products/try-missing-you-dad-hat" target="_blank" rel="noopener">
-      <img src="./Cap.png" alt="Try Missing You Dad Hat" style="position:absolute; inset:0; width:100%; height:100%; object-fit:cover; z-index:0;">
-      <span class="tag" data-i18n="drop_tag">First Drop</span>
-      <h3 data-i18n="item2_title">Try Missing You Dad Hat</h3>
-      <p data-i18n="item2_desc">Embroidered dad hat — same line, stitched instead of printed.</p>
-    </a>
-  </div>
-
-  <div style="text-align:center; margin-top:40px;">
-    <a href="https://solid22-shop.fourthwall.com" target="_blank" rel="noopener"
-       style="display:inline-block; background:var(--mauve); color:#0d0c0b; font-weight:600;
-font-size:13px; letter-spacing:.04em; text-transform:uppercase;
-padding:16px 36px; text-decoration:none;" data-i18n="shop_btn">
-Shop The Drop
-    </a>
   </div>
 </section>
 
@@ -804,8 +771,6 @@ Get The Templates
     <div class="chat-msg bot" id="chatGreeting" data-i18n="chat_greeting">Hey — thanks for stopping by. What can I help with?</div>
   </div>
   <div id="chatOptions">
-    <button class="chat-option" onclick="askChat('drop')" data-i18n="chat_opt_drop">When's the next drop?</button>
-    <button class="chat-option" onclick="askChat('shipping')" data-i18n="chat_opt_shipping">Shipping &amp; sizing?</button>
     <button class="chat-option" onclick="askChat('updates')" data-i18n="chat_opt_updates">How do I get updates?</button>
     <button class="chat-option" onclick="askChat('contact')" data-i18n="chat_opt_contact">Talk to a real person</button>
   </div>
@@ -815,7 +780,7 @@ Get The Templates
   // ---------- TRANSLATIONS ----------
   const translations = {
     en: {
-      nav_drop: "The Drop", nav_words: "Words", nav_follow: "Follow", nav_love: "Love Notes", nav_quiet: "The Quiet Room", nav_templates: "Templates",
+      nav_words: "Words", nav_follow: "Follow", nav_love: "Love Notes", nav_quiet: "The Quiet Room", nav_templates: "Templates",
       tab_login: "Log In", tab_signup: "Sign Up",
       ph_email: "Email", ph_password: "Password", ph_password_new: "Password (6+ characters)", ph_name: "Display name", ph_post: "Share something...",
       btn_login: "Log In", btn_signup: "Create Account", btn_logout: "Log Out", btn_post: "Post",
@@ -824,14 +789,6 @@ Get The Templates
       hero_sub: "Built in a room with a barbell, some laundry, and a lot on my mind. Merch is here — for the ones who feel deeply and still show up.",
       stat_ig: "IG Followers", stat_yt: "YT Views", stat_30d: "Views / 30 days", stat_posts: "Posts & Counting", stat_posts_dynamic: "Subscribers",
       watch_eyebrow: "As Seen On", watch_h2: "Watch The Story",
-      drop_eyebrow: "Out Now", drop_h2: "The First Drop",
-      drop_p: "Apparel built the same way the posts are — plain, honest, a little heavy. Shop it now before it's gone.",
-      drop_tag: "First Drop",
-      item1_title: "Missing You Tee",
-      item1_desc: "Boxy fit, back print — \"If you think missing me is hard, then you should try missing you.\"",
-      item2_title: "Try Missing You Dad Hat",
-      item2_desc: "Embroidered dad hat — same line, stitched instead of printed.",
-      shop_btn: "Shop The Drop",
       templates_eyebrow: "For Creators",
       templates_h2: "Build Your Own",
       templates_p: "The same quotes and cards behind Solid22 — now yours to use. Two packs, zero design skills needed.",
@@ -841,7 +798,6 @@ Get The Templates
       templates2_title: "Love Notes Templates",
       templates2_desc: "6 branded quote-card designs, ready to edit and post. $8.",
       templates_btn: "Get The Templates",
-      capture_note: "Want first access to the next drop? Join the list above.",
       words_eyebrow: "From The Page", words_h2: "In My Own Words",
       quote1: "\"It's hard to go through life without the one who makes you happy.\"",
       quote1_meta: "Reel — 3 views logged today",
@@ -856,13 +812,9 @@ Get The Templates
       footer_fine: "© 2026 Solid22. Built on discipline, written from the heart.",
       chat_sub: "Usually replies personally",
       chat_greeting: "Hey — thanks for stopping by. What can I help with?",
-      chat_opt_drop: "When's the next drop?",
-      chat_opt_shipping: "Shipping & sizing?",
       chat_opt_updates: "How do I get updates?",
       chat_opt_contact: "Talk to a real person",
-      chat_ans_drop: "The first drop is live right now — grab it before it's gone. Tap \"Shop The Drop\" up top to check it out.",
-      chat_ans_shipping: "Orders ship through Fourthwall, usually within 3-5 business days. Sizing runs true to standard unisex tees — check the size chart on the product page if you're between sizes.",
-      chat_ans_updates: "Drop your email in the signup box above the drop section — no spam, just a heads up when new stuff releases.",
+      chat_ans_updates: "Drop your email or follow along — no spam, just a heads up when new posts and drops release.",
       chat_ans_contact: "Best way to reach me directly is Instagram — @solid22_. I read every DM myself.",
       strip_quotes: [
         "It's hard to go through life without the one who makes you happy.",
@@ -874,7 +826,7 @@ Get The Templates
       ]
     },
     es: {
-      nav_drop: "El Lanzamiento", nav_words: "Palabras", nav_follow: "Síguenos", nav_love: "Notas de Amor", nav_quiet: "El Cuarto Silencioso", nav_templates: "Plantillas",
+      nav_words: "Palabras", nav_follow: "Síguenos", nav_love: "Notas de Amor", nav_quiet: "El Cuarto Silencioso", nav_templates: "Plantillas",
       tab_login: "Iniciar Sesión", tab_signup: "Registrarse",
       ph_email: "Correo", ph_password: "Contraseña", ph_password_new: "Contraseña (6+ caracteres)", ph_name: "Nombre a mostrar", ph_post: "Comparte algo...",
       btn_login: "Iniciar Sesión", btn_signup: "Crear Cuenta", btn_logout: "Cerrar Sesión", btn_post: "Publicar",
@@ -883,14 +835,6 @@ Get The Templates
       hero_sub: "Construido en un cuarto con una barra, algo de ropa por lavar, y muchas cosas en mente. La mercancía ya está disponible — para quienes sienten profundo y aun así siguen adelante.",
       stat_ig: "Seguidores IG", stat_yt: "Vistas YT", stat_30d: "Vistas / 30 días", stat_posts: "Publicaciones y contando", stat_posts_dynamic: "Suscriptores",
       watch_eyebrow: "Como Se Vio En", watch_h2: "Mira La Historia",
-      drop_eyebrow: "Ya Disponible", drop_h2: "El Primer Lanzamiento",
-      drop_p: "Ropa hecha igual que los posts — simple, honesta, un poco pesada. Cómprala ahora antes de que se agote.",
-      drop_tag: "Primer Lanzamiento",
-      item1_title: "Camiseta Missing You",
-      item1_desc: "Corte ancho, estampado en la espalda — \"Si crees que extrañarme es difícil, deberías intentar extrañarte a ti mismo.\"",
-      item2_title: "Gorra Try Missing You",
-      item2_desc: "Gorra bordada — la misma frase, bordada en vez de impresa.",
-      shop_btn: "Ver la Tienda",
       templates_eyebrow: "Para Creadores",
       templates_h2: "Crea el Tuyo",
       templates_p: "Las mismas frases y tarjetas detrás de Solid22 — ahora son tuyas. Dos paquetes, sin necesitar habilidades de diseño.",
@@ -900,7 +844,6 @@ Get The Templates
       templates2_title: "Plantillas Love Notes",
       templates2_desc: "6 diseños de tarjetas de frases, listos para editar y publicar. $8.",
       templates_btn: "Obtener las Plantillas",
-      capture_note: "¿Quieres acceso anticipado al próximo lanzamiento? Únete a la lista arriba.",
       words_eyebrow: "Desde la Página", words_h2: "En Mis Propias Palabras",
       quote1: "\"Es difícil vivir sin quien te hace feliz.\"",
       quote1_meta: "Reel — 3 vistas hoy",
@@ -915,13 +858,9 @@ Get The Templates
       footer_fine: "© 2026 Solid22. Construido con disciplina, escrito desde el corazón.",
       chat_sub: "Normalmente respondo yo mismo",
       chat_greeting: "Hola — gracias por pasar. ¿En qué puedo ayudarte?",
-      chat_opt_drop: "¿Cuándo es el próximo lanzamiento?",
-      chat_opt_shipping: "¿Envío y tallas?",
       chat_opt_updates: "¿Cómo recibo novedades?",
       chat_opt_contact: "Hablar con una persona real",
-      chat_ans_drop: "El primer lanzamiento ya está disponible — consíguelo antes de que se agote. Toca \"Ver la Tienda\" arriba para verlo.",
-      chat_ans_shipping: "Los pedidos se envían por Fourthwall, normalmente en 3-5 días hábiles. Las tallas son estándar unisex — revisa la tabla de tallas en la página del producto si tienes dudas.",
-      chat_ans_updates: "Deja tu correo en el cuadro de arriba — sin spam, solo un aviso cuando salga algo nuevo.",
+      chat_ans_updates: "Deja tu correo o sígueme — sin spam, solo un aviso cuando salga algo nuevo.",
       chat_ans_contact: "La mejor forma de contactarme es por Instagram — @solid22_. Leo todos los mensajes yo mismo.",
       strip_quotes: [
         "Es difícil vivir sin quien te hace feliz.",
@@ -933,7 +872,7 @@ Get The Templates
       ]
     },
     fr: {
-      nav_drop: "La Sortie", nav_words: "Mots", nav_follow: "Suivre", nav_love: "Notes d'Amour", nav_quiet: "La Salle Silencieuse", nav_templates: "Modèles",
+      nav_words: "Mots", nav_follow: "Suivre", nav_love: "Notes d'Amour", nav_quiet: "La Salle Silencieuse", nav_templates: "Modèles",
       tab_login: "Connexion", tab_signup: "S'inscrire",
       ph_email: "E-mail", ph_password: "Mot de passe", ph_password_new: "Mot de passe (6+ caractères)", ph_name: "Nom affiché", ph_post: "Partage quelque chose...",
       btn_login: "Connexion", btn_signup: "Créer un compte", btn_logout: "Déconnexion", btn_post: "Publier",
@@ -942,14 +881,6 @@ Get The Templates
       hero_sub: "Construit dans une chambre avec une barre, du linge à faire, et beaucoup en tête. Les articles sont disponibles dès maintenant — pour ceux qui ressentent profondément et se montrent quand même.",
       stat_ig: "Abonnés IG", stat_yt: "Vues YT", stat_30d: "Vues / 30 jours", stat_posts: "Publications et ça continue", stat_posts_dynamic: "Abonnés YouTube",
       watch_eyebrow: "Vu Sur", watch_h2: "Regarde L'Histoire",
-      drop_eyebrow: "Disponible Maintenant", drop_h2: "La Première Sortie",
-      drop_p: "Des vêtements faits comme les publications — simples, honnêtes, un peu lourds. Achetez maintenant avant rupture de stock.",
-      drop_tag: "Première Sortie",
-      item1_title: "T-shirt Missing You",
-      item1_desc: "Coupe ample, impression au dos — \"Si tu crois que c'est dur de me manquer, essaie de te manquer à toi-même.\"",
-      item2_title: "Casquette Try Missing You",
-      item2_desc: "Casquette brodée — même phrase, brodée au lieu d'imprimée.",
-      shop_btn: "Voir la Boutique",
       templates_eyebrow: "Pour Les Créateurs",
       templates_h2: "Crée Le Tien",
       templates_p: "Les mêmes citations et cartes derrière Solid22 — maintenant à toi. Deux packs, aucune compétence en design requise.",
@@ -959,7 +890,6 @@ Get The Templates
       templates2_title: "Modèles Love Notes",
       templates2_desc: "6 designs de cartes de citations, prêts à modifier et publier. 8 $.",
       templates_btn: "Obtenir Les Modèles",
-      capture_note: "Envie d'un accès prioritaire à la prochaine sortie ? Inscrivez-vous ci-dessus.",
       words_eyebrow: "Depuis la Page", words_h2: "Dans Mes Propres Mots",
       quote1: "\"C'est dur de traverser la vie sans celui ou celle qui te rend heureux.\"",
       quote1_meta: "Reel — 3 vues aujourd'hui",
@@ -974,13 +904,9 @@ Get The Templates
       footer_fine: "© 2026 Solid22. Construit avec discipline, écrit avec le cœur.",
       chat_sub: "Je réponds généralement moi-même",
       chat_greeting: "Salut — merci de ta visite. Comment puis-je t'aider ?",
-      chat_opt_drop: "C'est quand la prochaine sortie ?",
-      chat_opt_shipping: "Livraison et tailles ?",
       chat_opt_updates: "Comment recevoir les mises à jour ?",
       chat_opt_contact: "Parler à une vraie personne",
-      chat_ans_drop: "La première sortie est disponible dès maintenant — prends-la avant rupture de stock. Touche \"Voir la Boutique\" en haut pour la découvrir.",
-      chat_ans_shipping: "Les commandes sont expédiées via Fourthwall, généralement sous 3 à 5 jours ouvrés. Les tailles sont unisexes standards — consulte le guide des tailles sur la page produit en cas de doute.",
-      chat_ans_updates: "Laisse ton e-mail dans le champ ci-dessus — pas de spam, juste un avis quand du nouveau sort.",
+      chat_ans_updates: "Laisse ton e-mail ou suis-moi — pas de spam, juste un avis quand du nouveau sort.",
       chat_ans_contact: "Le meilleur moyen de me contacter directement est Instagram — @solid22_. Je lis chaque message moi-même.",
       strip_quotes: [
         "C'est dur de traverser la vie sans celui qui te rend heureux.",
@@ -1056,14 +982,10 @@ Get The Templates
     const body = document.getElementById('chatBody');
 
     const userLabelKeys = {
-      drop: 'chat_opt_drop',
-      shipping: 'chat_opt_shipping',
       updates: 'chat_opt_updates',
       contact: 'chat_opt_contact'
     };
     const answerKeys = {
-      drop: 'chat_ans_drop',
-      shipping: 'chat_ans_shipping',
       updates: 'chat_ans_updates',
       contact: 'chat_ans_contact'
     };
