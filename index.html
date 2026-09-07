@@ -569,6 +569,7 @@
   <div class="logo">SOLID<span>22</span></div>
   <nav>
     <a href="#drop" data-i18n="nav_drop">The Drop</a>
+    <a href="#templates" data-i18n="nav_templates">Templates</a>
     <a href="#words" data-i18n="nav_words">Words</a>
     <a href="#follow" data-i18n="nav_follow">Follow</a>
     <a href="./love.html" data-i18n="nav_love">Love Notes</a>
@@ -655,6 +656,36 @@
 font-size:13px; letter-spacing:.04em; text-transform:uppercase;
 padding:16px 36px; text-decoration:none;" data-i18n="shop_btn">
 Shop The Drop
+    </a>
+  </div>
+</section>
+
+<section id="templates">
+  <div class="section-head">
+    <div class="eyebrow" data-i18n="templates_eyebrow">For Creators</div>
+    <h2 data-i18n="templates_h2">Build Your Own</h2>
+    <p data-i18n="templates_p">The same quotes and cards behind Solid22 — now yours to use. Two packs, zero design skills needed.</p>
+  </div>
+
+  <div class="drop-grid" style="max-width:640px; margin:0 auto; grid-template-columns:repeat(2,1fr);">
+    <a class="drop-item" href="https://whop.com/solid22-cpu/30-day-love-quotes-caption-pack/" target="_blank" rel="noopener">
+      <span class="tag" data-i18n="templates_tag">Digital Pack</span>
+      <h3 data-i18n="templates1_title">30-Day Caption Pack</h3>
+      <p data-i18n="templates1_desc">30 love quotes, each with a ready-to-post caption. $5.</p>
+    </a>
+    <a class="drop-item" href="https://whop.com/solid22-cpu/love-notes-template-pack/" target="_blank" rel="noopener">
+      <span class="tag" data-i18n="templates_tag">Digital Pack</span>
+      <h3 data-i18n="templates2_title">Love Notes Templates</h3>
+      <p data-i18n="templates2_desc">6 branded quote-card designs, ready to edit and post. $8.</p>
+    </a>
+  </div>
+
+  <div style="text-align:center; margin-top:40px;">
+    <a href="https://whop.com/solid22-cpu/" target="_blank" rel="noopener"
+       style="display:inline-block; background:transparent; color:var(--cream); font-weight:600;
+font-size:13px; letter-spacing:.04em; text-transform:uppercase;
+padding:16px 36px; text-decoration:none; border:1px solid var(--line);" data-i18n="templates_btn">
+Get The Templates
     </a>
   </div>
 </section>
@@ -782,7 +813,7 @@ Shop The Drop
   // ---------- TRANSLATIONS ----------
   const translations = {
     en: {
-      nav_drop: "The Drop", nav_words: "Words", nav_follow: "Follow", nav_love: "Love Notes", nav_quiet: "The Quiet Room",
+      nav_drop: "The Drop", nav_words: "Words", nav_follow: "Follow", nav_love: "Love Notes", nav_quiet: "The Quiet Room", nav_templates: "Templates",
       tab_login: "Log In", tab_signup: "Sign Up",
       ph_email: "Email", ph_password: "Password", ph_password_new: "Password (6+ characters)", ph_name: "Display name", ph_post: "Share something...",
       btn_login: "Log In", btn_signup: "Create Account", btn_logout: "Log Out", btn_post: "Post",
@@ -799,6 +830,15 @@ Shop The Drop
       item2_title: "Try Missing You Dad Hat",
       item2_desc: "Embroidered dad hat — same line, stitched instead of printed.",
       shop_btn: "Shop The Drop",
+      templates_eyebrow: "For Creators",
+      templates_h2: "Build Your Own",
+      templates_p: "The same quotes and cards behind Solid22 — now yours to use. Two packs, zero design skills needed.",
+      templates_tag: "Digital Pack",
+      templates1_title: "30-Day Caption Pack",
+      templates1_desc: "30 love quotes, each with a ready-to-post caption. $5.",
+      templates2_title: "Love Notes Templates",
+      templates2_desc: "6 branded quote-card designs, ready to edit and post. $8.",
+      templates_btn: "Get The Templates",
       capture_note: "Want first access to the next drop? Join the list above.",
       words_eyebrow: "From The Page", words_h2: "In My Own Words",
       quote1: "\"It's hard to go through life without the one who makes you happy.\"",
@@ -832,7 +872,7 @@ Shop The Drop
       ]
     },
     es: {
-      nav_drop: "El Lanzamiento", nav_words: "Palabras", nav_follow: "Síguenos", nav_love: "Notas de Amor", nav_quiet: "El Cuarto Silencioso",
+      nav_drop: "El Lanzamiento", nav_words: "Palabras", nav_follow: "Síguenos", nav_love: "Notas de Amor", nav_quiet: "El Cuarto Silencioso", nav_templates: "Plantillas",
       tab_login: "Iniciar Sesión", tab_signup: "Registrarse",
       ph_email: "Correo", ph_password: "Contraseña", ph_password_new: "Contraseña (6+ caracteres)", ph_name: "Nombre a mostrar", ph_post: "Comparte algo...",
       btn_login: "Iniciar Sesión", btn_signup: "Crear Cuenta", btn_logout: "Cerrar Sesión", btn_post: "Publicar",
@@ -849,6 +889,15 @@ Shop The Drop
       item2_title: "Gorra Try Missing You",
       item2_desc: "Gorra bordada — la misma frase, bordada en vez de impresa.",
       shop_btn: "Ver la Tienda",
+      templates_eyebrow: "Para Creadores",
+      templates_h2: "Crea el Tuyo",
+      templates_p: "Las mismas frases y tarjetas detrás de Solid22 — ahora son tuyas. Dos paquetes, sin necesitar habilidades de diseño.",
+      templates_tag: "Paquete Digital",
+      templates1_title: "Paquete de 30 Días",
+      templates1_desc: "30 frases de amor, cada una con un pie de foto listo para publicar. $5.",
+      templates2_title: "Plantillas Love Notes",
+      templates2_desc: "6 diseños de tarjetas de frases, listos para editar y publicar. $8.",
+      templates_btn: "Obtener las Plantillas",
       capture_note: "¿Quieres acceso anticipado al próximo lanzamiento? Únete a la lista arriba.",
       words_eyebrow: "Desde la Página", words_h2: "En Mis Propias Palabras",
       quote1: "\"Es difícil vivir sin quien te hace feliz.\"",
@@ -882,7 +931,7 @@ Shop The Drop
       ]
     },
     fr: {
-      nav_drop: "La Sortie", nav_words: "Mots", nav_follow: "Suivre", nav_love: "Notes d'Amour", nav_quiet: "La Salle Silencieuse",
+      nav_drop: "La Sortie", nav_words: "Mots", nav_follow: "Suivre", nav_love: "Notes d'Amour", nav_quiet: "La Salle Silencieuse", nav_templates: "Modèles",
       tab_login: "Connexion", tab_signup: "S'inscrire",
       ph_email: "E-mail", ph_password: "Mot de passe", ph_password_new: "Mot de passe (6+ caractères)", ph_name: "Nom affiché", ph_post: "Partage quelque chose...",
       btn_login: "Connexion", btn_signup: "Créer un compte", btn_logout: "Déconnexion", btn_post: "Publier",
@@ -899,6 +948,15 @@ Shop The Drop
       item2_title: "Casquette Try Missing You",
       item2_desc: "Casquette brodée — même phrase, brodée au lieu d'imprimée.",
       shop_btn: "Voir la Boutique",
+      templates_eyebrow: "Pour Les Créateurs",
+      templates_h2: "Crée Le Tien",
+      templates_p: "Les mêmes citations et cartes derrière Solid22 — maintenant à toi. Deux packs, aucune compétence en design requise.",
+      templates_tag: "Pack Numérique",
+      templates1_title: "Pack de 30 Jours",
+      templates1_desc: "30 citations d'amour, chacune avec une légende prête à publier. 5 $.",
+      templates2_title: "Modèles Love Notes",
+      templates2_desc: "6 designs de cartes de citations, prêts à modifier et publier. 8 $.",
+      templates_btn: "Obtenir Les Modèles",
       capture_note: "Envie d'un accès prioritaire à la prochaine sortie ? Inscrivez-vous ci-dessus.",
       words_eyebrow: "Depuis la Page", words_h2: "Dans Mes Propres Mots",
       quote1: "\"C'est dur de traverser la vie sans celui ou celle qui te rend heureux.\"",
