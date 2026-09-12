@@ -247,7 +247,6 @@
 <footer>
   <div class="dots" id="dots"></div>
   <div class="hint" id="hintText">swipe, or tap the arrows</div>
-  <a href="https://solid22-shop.fourthwall.com" target="_blank" rel="noopener" id="shopLink" style="display:inline-block; margin-top:14px; font-family:'Inter',sans-serif; font-size:11px; letter-spacing:.08em; text-transform:uppercase; color:var(--gold); text-decoration:none; border-bottom:1px solid rgba(211,169,95,.4); padding-bottom:2px;">Shop the drop ↗</a>
 </footer>
 
 <div class="toast" id="toast"></div>
@@ -258,7 +257,6 @@
       subText: "one note at a time, from me to you",
       backLink: "← Back to Solid22",
       hintText: "swipe, or tap the arrows",
-      shopLink: "Shop the drop ↗",
       noteLabel: "Note",
       ofLabel: "of",
       likeLabel: "Save this note",
@@ -266,6 +264,7 @@
       toastCopied: "Copied to clipboard",
       shareSuffix: " — Love Messages",
       quotes: [
+        "Tears in my eyes... Tears for you... Tears that realize how much I love you.",
         "If a raindrop would mean I love you, and you would ask me how much I love you, I bet you it would rain all day.",
         "I love you even more than when I started this sentence.",
         "To love you is to receive a glimpse of heaven.",
@@ -318,7 +317,6 @@
       subText: "una nota a la vez, de mí para ti",
       backLink: "← Volver a Solid22",
       hintText: "desliza, o toca las flechas",
-      shopLink: "Ver la tienda ↗",
       noteLabel: "Nota",
       ofLabel: "de",
       likeLabel: "Guardar esta nota",
@@ -326,6 +324,7 @@
       toastCopied: "Copiado al portapapeles",
       shareSuffix: " — Love Messages",
       quotes: [
+        "Lágrimas en mis ojos... Lágrimas por ti... Lágrimas que se dan cuenta de cuánto te amo.",
         "Si una gota de lluvia significara te amo, y me preguntaras cuánto te amo, apuesto a que llovería todo el día.",
         "Te amo aún más que cuando empecé esta frase.",
         "Amarte es recibir un vistazo del cielo.",
@@ -378,7 +377,6 @@
       subText: "un mot à la fois, de moi pour toi",
       backLink: "← Retour à Solid22",
       hintText: "glisse, ou touche les flèches",
-      shopLink: "Voir la boutique ↗",
       noteLabel: "Note",
       ofLabel: "sur",
       likeLabel: "Enregistrer ce mot",
@@ -386,6 +384,7 @@
       toastCopied: "Copié dans le presse-papiers",
       shareSuffix: " — Love Messages",
       quotes: [
+        "Des larmes dans mes yeux... Des larmes pour toi... Des larmes qui réalisent combien je t'aime.",
         "Si une goutte de pluie voulait dire je t'aime, et que tu me demandais combien je t'aime, je parie qu'il pleuvrait toute la journée.",
         "Je t'aime encore plus que lorsque j'ai commencé cette phrase.",
         "T'aimer, c'est recevoir un aperçu du paradis.",
@@ -456,7 +455,6 @@
     document.getElementById('subText').textContent = translations[lang].subText;
     document.getElementById('backLink').textContent = translations[lang].backLink;
     document.getElementById('hintText').textContent = translations[lang].hintText;
-    document.getElementById('shopLink').textContent = translations[lang].shopLink;
     document.getElementById('langBtnLabel').textContent = lang.toUpperCase();
     document.getElementById('langMenu').style.display = 'none';
     document.documentElement.lang = lang;
@@ -530,7 +528,6 @@
     stack.innerHTML = '';
     buildDots();
 
-    // Render current + next two, stacked
     for (let depth = 0; depth < 3; depth++){
       const idx = (current + depth) % quotes.length;
       const card = document.createElement('div');
