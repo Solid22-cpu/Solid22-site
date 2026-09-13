@@ -231,7 +231,7 @@
     </div>
   </div>
   <div class="brand"><a href="./index.html" style="text-decoration:none; color:inherit;">Love<span>&nbsp;Messages</span></a></div>
-  <div class="sub" id="subText">one note at a time, from me to you</div>
+  <div class="sub" id="subText">a few things I never said out loud until now</div>
   <a href="./index.html" id="backLink" style="display:inline-block; margin-top:10px; font-family:'Inter',sans-serif; font-size:11px; letter-spacing:.1em; text-transform:uppercase; color:var(--gold); text-decoration:none; border-bottom:1px solid rgba(211,169,95,.4); padding-bottom:2px;">← Back to Solid22</a>
 </header>
 
@@ -246,7 +246,7 @@
 
 <footer>
   <div class="dots" id="dots"></div>
-  <div class="hint" id="hintText">swipe, or tap the arrows</div>
+  <div class="hint" id="hintText">swipe left or right when you're ready</div>
 </footer>
 
 <div class="toast" id="toast"></div>
@@ -254,9 +254,9 @@
 <script>
   const translations = {
     en: {
-      subText: "one note at a time, from me to you",
+      subText: "a few things I never said out loud until now",
       backLink: "← Back to Solid22",
-      hintText: "swipe, or tap the arrows",
+      hintText: "swipe left or right when you're ready",
       noteLabel: "Note",
       ofLabel: "of",
       likeLabel: "Save this note",
@@ -289,10 +289,9 @@
         "I finally got my past, present, and future tenses correct today. I loved you. I love you. I will love you forever!",
         "Set a place for me in your heart and not in your mind, for the mind easily forgets but the heart always remembers. I love you.",
         "If you think missing me is hard, then you should try missing you.",
-        "A day without you is like laundry without soap — everything feels a little less clean, a little less right.",
-        "Missing you is like taking the sun out of the sky and leaving the world dark, cold, and helpless.",
+        "Laundry doesn't feel the same without you around to complain about the folding.",
+        "The sky's the same color it always is. It just doesn't feel as bright without you under it.",
         "It's hard to go through life without the one who makes you happy.",
-        "It's funny — every soul in this world seems to know how I feel about you. Every soul but you.",
         "I keep the porch light on some nights, not because I think you're coming, but because some habits are really just love wearing old shoes.",
         "You didn't complete me. You just made the parts I already had easier to carry.",
         "Getting over you was hard. I'm still not sure I ever really did.",
@@ -315,9 +314,9 @@
       ]
     },
     es: {
-      subText: "una nota a la vez, de mí para ti",
+      subText: "algunas cosas que nunca dije en voz alta hasta ahora",
       backLink: "← Volver a Solid22",
-      hintText: "desliza, o toca las flechas",
+      hintText: "desliza cuando estés listo",
       noteLabel: "Nota",
       ofLabel: "de",
       likeLabel: "Guardar esta nota",
@@ -350,10 +349,9 @@
         "Finalmente entendí bien los tiempos verbales hoy: pasado, presente y futuro. Te amé. Te amo. Te amaré para siempre.",
         "Reserva un lugar para mí en tu corazón y no en tu mente, porque la mente olvida fácilmente pero el corazón siempre recuerda. Te amo.",
         "Si crees que extrañarme es difícil, deberías intentar extrañarte a ti mismo.",
-        "Un día sin ti es como lavar la ropa sin jabón — todo se siente un poco menos limpio, un poco menos correcto.",
-        "Extrañarte es como quitar el sol del cielo y dejar el mundo oscuro, frío y desamparado.",
+        "La ropa no se siente igual sin ti cerca para quejarte de cómo la doblo.",
+        "El cielo tiene el mismo color de siempre. Solo que no se siente tan brillante sin ti debajo de él.",
         "Es difícil vivir sin quien te hace feliz.",
-        "Es curioso — todas las almas de este mundo parecen saber lo que siento por ti. Todas, menos tú.",
         "Dejo la luz del porche encendida algunas noches, no porque crea que vendrás, sino porque algunos hábitos son solo amor disfrazado de costumbre.",
         "No me completaste. Solo hiciste que las partes que ya tenía fueran más fáciles de cargar.",
         "Superarte fue difícil. Todavía no estoy seguro de haberlo logrado.",
@@ -376,9 +374,9 @@
       ]
     },
     fr: {
-      subText: "un mot à la fois, de moi pour toi",
+      subText: "quelques choses que je n'ai jamais dites à voix haute avant",
       backLink: "← Retour à Solid22",
-      hintText: "glisse, ou touche les flèches",
+      hintText: "glisse quand tu es prêt",
       noteLabel: "Note",
       ofLabel: "sur",
       likeLabel: "Enregistrer ce mot",
@@ -411,10 +409,9 @@
         "J'ai enfin bien compris les temps aujourd'hui : passé, présent, futur. Je t'ai aimé. Je t'aime. Je t'aimerai pour toujours.",
         "Fais-moi une place dans ton cœur et non dans ton esprit, car l'esprit oublie facilement mais le cœur se souvient toujours. Je t'aime.",
         "Si tu crois que c'est dur de me manquer, essaie de te manquer à toi-même.",
-        "Une journée sans toi, c'est comme la lessive sans savon — tout semble un peu moins propre, un peu moins juste.",
-        "Tu me manques comme si on enlevait le soleil du ciel, laissant le monde sombre, froid et impuissant.",
+        "Le linge n'a plus le même goût sans toi pour râler sur comment je le plie.",
+        "Le ciel a toujours la même couleur. Il n'est juste plus aussi lumineux sans toi en dessous.",
         "C'est dur de traverser la vie sans celui qui te rend heureux.",
-        "C'est drôle — toutes les âmes de ce monde semblent savoir ce que je ressens pour toi. Toutes, sauf toi.",
         "Je laisse la lumière du porche allumée certains soirs, pas parce que je pense que tu viens, mais parce que certaines habitudes ne sont que de l'amour déguisé en routine.",
         "Tu ne m'as pas complété. Tu as juste rendu plus faciles à porter les parties que j'avais déjà.",
         "T'oublier a été dur. Je ne suis toujours pas sûr d'y être vraiment arrivé.",
@@ -540,15 +537,10 @@
       q.className = 'quote-text';
       q.textContent = '"' + quotes[idx] + '"';
 
-      const num = document.createElement('div');
-      num.className = 'quote-num';
-      num.textContent = translations[currentLang].noteLabel + ' ' + (idx + 1) + ' ' + translations[currentLang].ofLabel + ' ' + quotes.length;
-
       const top = document.createElement('div');
       top.appendChild(q);
 
       const bottom = document.createElement('div');
-      bottom.appendChild(num);
 
       card.appendChild(top);
       card.appendChild(bottom);
